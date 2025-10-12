@@ -320,78 +320,112 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+       
+        ['header' => 'GESTION PRODUITS'],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
+            'text' => 'Produits',
+            'icon' => 'fas fa-boxes',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Liste des produits',
+                    'route' => 'products.index',
+                    'icon' => 'fas fa-list',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Ajouter un produit',
+                    'route' => 'products.create',
+                    'icon' => 'fas fa-plus',
                 ],
             ],
         ],
-        ['header' => 'labels'],
         [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
+            'text' => 'Catégories',
+            'icon' => 'fas fa-tags',
+            'submenu' => [
+                [
+                    'text' => 'Liste des catégories',
+                    'route' => 'categories.index',
+                    'icon' => 'fas fa-list',
+                ],
+                [
+                    'text' => 'Ajouter une catégorie',
+                    'route' => 'categories.create',
+                    'icon' => 'fas fa-plus',
+                ],
+            ],
+        ],
+
+        ['header' => 'COMMANDES ET CLIENTS'],
+        [
+            'text' => 'Commandes',
+            'icon' => 'fas fa-shopping-cart',
+            'route' => 'orders.index',
         ],
         [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
+            'text' => 'Liste de souhaits',
+            'icon' => 'fas fa-heart',
+            'url' => '/wishlist',
         ],
         [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'text' => 'Panier',
+            'icon' => 'fas fa-shopping-basket',
+            'route' => 'cart.index',
         ],
+
+        ['header' => 'BLOG & CONTENU'],
+        [
+            'text' => 'Articles',
+            'icon' => 'fas fa-newspaper',
+            'submenu' => [
+                [
+                    'text' => 'Tous les articles',
+                    'route' => 'posts.index',
+                    'icon' => 'fas fa-list',
+                ],
+                [
+                    'text' => 'Ajouter un article',
+                    'route' => 'posts.create',
+                    'icon' => 'fas fa-plus',
+                ],
+            ],
+        ],
+
+        ['header' => 'MESSAGERIE'],
+        [
+            'text' => 'Messages reçus',
+            'icon' => 'fas fa-envelope',
+            'route' => 'contacts.index',
+        ],
+
+        ['header' => 'PAGES PUBLIQUES'],
+        [
+            'text' => 'Accueil',
+            'url' => '/',
+            'icon' => 'fas fa-home',
+        ],
+        [
+            'text' => 'À propos',
+            'route' => 'aboutus',
+            'icon' => 'fas fa-info-circle',
+        ],
+        [
+            'text' => 'Contact',
+            'route' => 'contact.form',
+            'icon' => 'fas fa-phone',
+        ],
+
+        ['header' => 'PARAMÈTRES UTILISATEUR'],
+        [
+            'text' => 'Profil',
+            'route' => 'profile.edit',
+            'icon' => 'fas fa-user',
+        ],
+        [
+            'text' => 'Déconnexion',
+            'url' => 'logout',
+            'icon' => 'fas fa-sign-out-alt',
+        ],
+
     ],
 
     /*

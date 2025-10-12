@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -30,9 +30,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/aboutus', function () {
+    return view('aboutsus');
+})->name('aboutus');
+Route::get('/contactus', function () {
+    return view('contactus');
+})->name('contactus');
 
 
 
+// Liste de tous les produits
 
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -128,14 +139,25 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 
 
 
+// Afficher le formulaire de contact
+Route::get('/contact', function () {
+    return view('contact'); // resources/views/contact.blade.php
+})->name('contact.form');
 
+// Envoi du formulaire
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
+// Admin : liste des messages
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 
-Route::get('/contacts', [ContactController::class, 'index']); // tous les messages (admin)
-Route::get('/contacts/{id}', [ContactController::class, 'show']); // voir un message
-Route::post('/contacts', [ContactController::class, 'store']); // envoyer message
-Route::post('/contacts/{id}/read', [ContactController::class, 'markAsRead']); // marquer lu
-Route::delete('/contacts/{id}', [ContactController::class, 'destroy']); // supprimer message
+// Voir un message
+Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+
+// Marquer comme lu
+Route::post('/contacts/{id}/read', [ContactController::class, 'markAsRead'])->name('contacts.read');
+
+// Supprimer un message
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
 
 require __DIR__.'/auth.php';
