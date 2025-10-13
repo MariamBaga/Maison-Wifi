@@ -331,7 +331,7 @@
                 <li class="nav-item"> <a class="nav-link" href="{{ route('aboutus') }}">A propos de nous</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('contact.form') }}">Contact Us</a></li>
                 <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('categories.index') }}">Our Store</a></li> -->
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
+                <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                         href="#" data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="account-dashboard.html">Dashboard</a>
@@ -345,7 +345,7 @@
                         <li><a class="dropdown-item" href="account-user-details.html">User Details</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
                 </ul>
             </nav>
         </div>
