@@ -317,7 +317,7 @@
                                     <li><a class="dropdown-item" href="product-comparison.html">Product Comparison</a>
                                     </li>
                                 </ul>
-                            </li> 
+                            </li>
                             <li><a class="dropdown-item" href="{{ route('aboutus') }}">A propos de nous</a></li>
                             <li><a class="dropdown-item" href="{{ route('contact.form') }}">Contact Us</a></li>
                             <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
@@ -329,7 +329,7 @@
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}">Shop</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('aboutus') }}">A propos de nous</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('contact.form') }}">Contact Us</a></li>
+                <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('contact.form') }}">Contact Us</a></li> -->
                 <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('categories.index') }}">Our Store</a></li> -->
                 <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                         href="#" data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>
