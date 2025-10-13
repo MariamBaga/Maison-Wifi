@@ -269,7 +269,7 @@
         </div>
 
        </li> -->
-                    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
+                    <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                             href="#" data-bs-toggle="dropdown">Shop <i class='bx bx-chevron-down'></i></a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop
@@ -295,7 +295,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!-- <li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop
+                            <li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop
                                     Pages <i class='bx bx-chevron-right float-end'></i></a>
                                 <ul class="submenu dropdown-menu">
                                     <li><a class="dropdown-item" href="shop-cart.html">Shop Cart</a>
@@ -317,14 +317,14 @@
                                     <li><a class="dropdown-item" href="product-comparison.html">Product Comparison</a>
                                     </li>
                                 </ul>
-                            </li> -->
+                            </li> 
                             <li><a class="dropdown-item" href="{{ route('aboutus') }}">A propos de nous</a></li>
                             <li><a class="dropdown-item" href="{{ route('contact.form') }}">Contact Us</a></li>
                             <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
                             <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
                     </li>
                     <li><a class="dropdown-item" href="authentication-forgot-password.html">Forgot Password</a>
-                    </li>
+                    </li> -->
                 </ul>
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}">Shop</a></li>
