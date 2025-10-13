@@ -11,7 +11,7 @@ class OrderController extends Controller
     // Afficher toutes les commandes du client
     public function index(Request $request)
     {
-        $orders = Order::where('customer_id', $request->user()->id)
+        $orders = Order::where('user_id', $request->user()->id)
                         ->with('products')
                         ->get();
 
@@ -32,7 +32,7 @@ class OrderController extends Controller
             'payment_method' => 'required|string',
         ]);
 
-        $cart = Cart::where('customer_id', $request->user()->id)->with('products')->first();
+        $cart = Cart::where('user_id', $request->user()->id)->with('products')->first();
 
         if (!$cart || $cart->products->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Votre panier est vide.');
@@ -43,7 +43,7 @@ class OrderController extends Controller
         });
 
         $order = Order::create([
-            'customer_id' => $request->user()->id,
+            'user_id' => $request->user()->id,
             'total' => $total,
             'status' => 'pending',
             'payment_method' => $request->payment_method,

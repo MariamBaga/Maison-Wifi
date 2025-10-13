@@ -1,6 +1,5 @@
 <?php
 
-// app/Models/Order.php
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,15 +9,29 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['customer_id', 'total', 'status', 'payment_method'];
+    // Champs remplissables
+    protected $fillable = [
+        'user_id',          // ✅ remplacé customer_id
+        'total',
+        'status',
+        'payment_method',
+    ];
 
-    public function customer()
+    /**
+     * Relation : une commande appartient à un utilisateur
+     */
+    public function user()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
+    /**
+     * Relation : une commande contient plusieurs produits
+     */
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity', 'price')->withTimestamps();
+        return $this->belongsToMany(Product::class)
+                    ->withPivot('quantity', 'price')
+                    ->withTimestamps();
     }
 }

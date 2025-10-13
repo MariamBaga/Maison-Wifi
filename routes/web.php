@@ -22,7 +22,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -85,27 +86,25 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 
 
 // Afficher le panier
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-// Ajouter un produit
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::middleware(['auth'])->group(function () {
+    // 🛒 Cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
-// Mettre à jour la quantité
-Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
-
-// Retirer un produit
-Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
-
-// Vider le panier
-Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
-
-
-
+    // 💖 Wishlist
+    Route::get('/wishlist', [WishlistController::class, 'show'])->name('wishlist.show');
+    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::post('/wishlist/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
+});
 
 
-Route::get('/wishlist', [WishlistController::class, 'show']);
-Route::post('/wishlist/add', [WishlistController::class, 'add']);
-Route::post('/wishlist/remove', [WishlistController::class, 'remove']);
+
+
+
 
 
 

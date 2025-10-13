@@ -46,13 +46,28 @@
 							</li> -->
 						</ul>
 						<ul class="navbar-nav social-link ms-lg-2 ms-auto">
-							<li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-facebook'></i></a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-twitter'></i></a>
-							</li>
-							<li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-linkedin'></i></a>
-							</li>
-						</ul>
+    <li class="nav-item">
+        <a class="nav-link" href="https://www.facebook.com/share/1Cqw2fha4c/" target="_blank">
+            <i class='bx bxl-facebook'></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://www.instagram.com/connectiix?igsh=MW5mOXZrdHZrNXJqdw==" target="_blank">
+            <i class='bx bxl-instagram'></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://www.linkedin.com/posts/connectiix_bonne-f%C3%AAte-de-tabaski-en-ce-jour-de-c%C3%A9l%C3%A9bration-activity-7336688602535378944-EiNR?utm_source=share&utm_medium=member_android&rcm=ACoAAA24VbIBop8-uRh2ODgVkuK6XYKDaal3ZvY" target="_blank">
+            <i class='bx bxl-linkedin'></i>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://www.tiktok.com/@connectiix2?_t=ZM-8x3htpyKUEg&_r=1" target="_blank">
+            <i class='bx bxl-tiktok'></i>
+        </a>
+    </li>
+</ul>
+
 					</nav>
 				</div>
 			</div>
@@ -89,8 +104,8 @@
 							<div class="fs-1 text-white"><i class='bx bx-headphone'></i>
 							</div>
 							<div class="ms-2">
-								<p class="mb-0 font-13">CALL US NOW</p>
-								<h5 class="mb-0">+011 5827918</h5>
+								<p class="mb-0 font-13">Appel nous maintenant</p>
+								<h5 class="mb-0"><a href="tel:002250748088478">(225) 0748 088 478</a></h5>
 							</div>
 						</div>
 						<div class="col col-md-auto order-2 order-md-4">
@@ -102,148 +117,62 @@
 										<li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i class='bx bx-heart'></i></a>
 										</li>
 										<li class="nav-item dropdown dropdown-large">
-											<a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown">	<span class="alert-count">8</span>
-												<i class='bx bx-shopping-bag'></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-end">
-												<a href="javascript:;">
-													<div class="cart-header">
-														<p class="cart-header-title mb-0">8 ITEMS</p>
-														<p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
-													</div>
-												</a>
-												<div class="cart-list">
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Men White T-Shirt</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/01.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Puma Sports Shoes</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/05.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Women Red Sneakers</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/17.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Black Headphone</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/10.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Blue Girl Shoes</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/08.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Men Leather Belt</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/18.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Men Yellow T-Shirt</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/04.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-													<a class="dropdown-item" href="javascript:;">
-														<div class="d-flex align-items-center">
-															<div class="flex-grow-1">
-																<h6 class="cart-product-title">Pool Charir</h6>
-																<p class="cart-product-price">1 X $29.00</p>
-															</div>
-															<div class="position-relative">
-																<div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i>
-																</div>
-																<div class="cart-product">
-																	<img src="assets/images/products/16.png" class="" alt="product image">
-																</div>
-															</div>
-														</div>
-													</a>
-												</div>
-												<a href="javascript:;">
-													<div class="text-center cart-footer d-flex align-items-center">
-														<h5 class="mb-0">TOTAL</h5>
-														<h5 class="mb-0 ms-auto">$189.00</h5>
-													</div>
-												</a>
-												<div class="d-grid p-3 border-top">	<a href="javascript:;" class="btn btn-light btn-ecomm">CHECKOUT</a>
-												</div>
-											</div>
-										</li>
+    <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown">
+        <span class="alert-count">{{ $cartCount }}</span>
+        <i class='bx bx-shopping-bag'></i>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-end">
+        <a href="{{ route('cart.index') }}">
+            <div class="cart-header">
+                <p class="cart-header-title mb-0">{{ $cartCount }} {{ Str::plural('ITEM', $cartCount) }}</p>
+                <p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
+            </div>
+        </a>
+
+        <div class="cart-list">
+            @forelse($cartItems as $item)
+                <a class="dropdown-item" href="{{ route('products.show', $item->id) }}">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="cart-product-title">{{ $item->name }}</h6>
+                            <p class="cart-product-price">{{ $item->pivot->quantity }} x {{ number_format($item->price, 0, ',', ' ') }} FCFA</p>
+                        </div>
+                        <div class="position-relative">
+                            <form method="POST" action="{{ route('cart.remove') }}">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                <button type="submit" class="cart-product-cancel position-absolute border-0 bg-transparent text-white">
+                                    <i class='bx bx-x'></i>
+                                </button>
+                            </form>
+                            <div class="cart-product">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @empty
+                <div class="text-center p-3">
+                    <p class="text-muted mb-0">Votre panier est vide.</p>
+                </div>
+            @endforelse
+        </div>
+
+        @if($cartCount > 0)
+            <a href="{{ route('cart.index') }}">
+                <div class="text-center cart-footer d-flex align-items-center">
+                    <h5 class="mb-0">TOTAL</h5>
+                    <h5 class="mb-0 ms-auto">{{ number_format($cartTotal, 0, ',', ' ') }} FCFA</h5>
+                </div>
+            </a>
+            <div class="d-grid p-3 border-top">
+                <a href="checkout.html" class="btn btn-light btn-ecomm">CHECKOUT</a>
+            </div>
+        @endif
+    </div>
+</li>
+
 									</ul>
 								</nav>
 							</div>

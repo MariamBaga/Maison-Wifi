@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -11,11 +11,14 @@ class CartController extends Controller
     // Afficher le panier du client
     public function index(Request $request)
     {
-        $cart = Cart::where('customer_id', $request->user()->id)->with('products')->first();
+        $cart = Cart::where('user_id', $request->user()->id)
+            ->with('products')
+            ->first();
+
         return view('cart.index', compact('cart'));
     }
 
-    // Ajouter un produit au panier
+    // Ajouter un produit
     public function add(Request $request)
     {
         $request->validate([
@@ -23,15 +26,16 @@ class CartController extends Controller
             'quantity' => 'nullable|integer|min:1'
         ]);
 
-        $cart = Cart::firstOrCreate(['customer_id' => $request->user()->id]);
+        $cart = Cart::firstOrCreate(['user_id' => $request->user()->id]);
+
         $cart->products()->syncWithoutDetaching([
             $request->product_id => ['quantity' => $request->quantity ?? 1]
         ]);
 
-        return redirect()->route('cart.index')->with('success', 'Produit ajouté au panier.');
+        return back()->with('success', 'Produit ajouté au panier.');
     }
 
-    // Mettre à jour la quantité d’un produit
+    // Mettre à jour
     public function update(Request $request)
     {
         $request->validate([
@@ -39,35 +43,33 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        $cart = Cart::where('customer_id', $request->user()->id)->first();
+        $cart = Cart::where('user_id', $request->user()->id)->first();
+
         if ($cart && $cart->products()->where('product_id', $request->product_id)->exists()) {
-            $cart->products()->updateExistingPivot($request->product_id, ['quantity' => $request->quantity]);
+            $cart->products()->updateExistingPivot($request->product_id, [
+                'quantity' => $request->quantity
+            ]);
         }
 
-        return redirect()->route('cart.index')->with('success', 'Quantité mise à jour.');
+        return back()->with('success', 'Quantité mise à jour.');
     }
 
-    // Retirer un produit du panier
+    // Retirer un produit
     public function remove(Request $request)
     {
         $request->validate(['product_id' => 'required|exists:products,id']);
+        $cart = Cart::where('user_id', $request->user()->id)->first();
+        if ($cart) $cart->products()->detach($request->product_id);
 
-        $cart = Cart::where('customer_id', $request->user()->id)->first();
-        if ($cart) {
-            $cart->products()->detach($request->product_id);
-        }
-
-        return redirect()->route('cart.index')->with('success', 'Produit retiré du panier.');
+        return back()->with('success', 'Produit retiré du panier.');
     }
 
-    // Vider tout le panier
+    // Vider le panier
     public function clear(Request $request)
     {
-        $cart = Cart::where('customer_id', $request->user()->id)->first();
-        if ($cart) {
-            $cart->products()->detach();
-        }
+        $cart = Cart::where('user_id', $request->user()->id)->first();
+        if ($cart) $cart->products()->detach();
 
-        return redirect()->route('cart.index')->with('success', 'Panier vidé.');
+        return back()->with('success', 'Panier vidé.');
     }
 }

@@ -7,16 +7,20 @@
 								<h6 class="mb-3 text-uppercase">Contact Info</h6>
 								<div class="address mb-3">
 									<p class="mb-0 text-uppercase text-white">Address</p>
-									<p class="mb-0 font-12">123 Street Name, City, Australia</p>
+									<p class="mb-0 font-12">(Bénin, Côte d’Ivoire, Sénégal, Mali)</p>
 								</div>
 								<div class="phone mb-3">
 									<p class="mb-0 text-uppercase text-white">Phone</p>
-									<p class="mb-0 font-13">Toll Free (123) 472-796</p>
-									<p class="mb-0 font-13">Mobile : +91-9910XXXX</p>
+                                    <p><i class="fa fa-phone me-2"></i> +225 05 64 51 59 16 / +225 07 48 08 84 78</p>
+                        <p><i class="fa fa-phone me-2"></i> +225 05 64 76 27 27 / +225 01 53 57 57 34</p>
+                        <p><i class="fa fa-phone me-2"></i> +229 01 40 48 54 74 / +223 94 51 20 49</p>
+                        <p><i class="fa fa-phone me-2"></i> +221 77 745 32 04</p>
+
+                        <p><i class="fa fa-map-marker-alt me-2"></i> ABATTA, Abidjan, Côte d'Ivoire</p>
 								</div>
 								<div class="email mb-3">
 									<p class="mb-0 text-uppercase text-white">Email</p>
-									<p class="mb-0 font-13">mail@example.com</p>
+                                    <p><i class="fa fa-envelope me-2"></i> <a href="mailto:contact@connectiix.com" class="text-white">contact@connectiix.com</a></p>
 								</div>
 								<div class="working-days mb-3">
 									<p class="mb-0 text-uppercase text-white">WORKING DAYS</p>
@@ -26,29 +30,18 @@
 						</div>
 						<div class="col">
 							<div class="footer-section2 mb-3">
-								<h6 class="mb-3 text-uppercase">Shop Categories</h6>
-								<ul class="list-unstyled">
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Jeans</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> T-Shirts</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Sports</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Shirts & Tops</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Clogs & Mules</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Sunglasses</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Bags & Wallets</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Sneakers & Athletic</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Electronis</a>
-									</li>
-									<li class="mb-1"><a href="javascript:;"><i class='bx bx-chevron-right'></i> Furniture</a>
-									</li>
-								</ul>
+                            <h6 class="mb-3 text-uppercase">Catégories</h6>
+<ul class="list-unstyled">
+    @foreach ($categories as $category)
+        <li class="mb-1">
+            <a href="{{ route('categories.show', $category->id) }}" class="text-white">
+                <i class='bx bx-chevron-right'></i> {{ $category->name }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+
+
 							</div>
 						</div>
 						<div class="col">

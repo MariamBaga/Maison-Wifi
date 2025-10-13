@@ -5,7 +5,7 @@ Email: codervent@gmail.com
 File: app.css
 */
 
-/* 
+/*
 
   - General
   - Header
@@ -75,7 +75,8 @@ a {
 	border: 1px solid rgb(255 255 255 / 15%);
 }
 .logo-icon {
-	width: 110px
+	width: 220px
+
 }
 .top-cart-icons ul.navbar-nav .nav-item a.cart-link {
 	font-size: 30px;

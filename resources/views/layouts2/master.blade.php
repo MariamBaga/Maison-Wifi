@@ -11,7 +11,7 @@
     <title>@yield('title', 'Mon Application Laravel')</title>
 </head>
 
-<body>
+<body class="bg-theme bg-theme1">	<b class="screen-overlay"></b>
 <div class="wrapper">
     {{-- Header / Navbar --}}
     @include('layouts2.header')
@@ -19,18 +19,23 @@
     {{-- Sidebar (si besoin) --}}
     @include('layouts2.sidebar')
 
-   
+
     {{-- Contenu principal --}}
 
         @yield('content')
+
+
+        {{-- Footer --}}
+    @include('layouts2.footer')
+
+  
 </div>
 
-    {{-- Footer --}}
-    @include('layouts2.footer')
+
 
     {{-- Scripts --}}
     @include('layouts2.scripts')
 
-
+@include('layouts2.parametre')
 </body>
 </html>
