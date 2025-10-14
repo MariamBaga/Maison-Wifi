@@ -87,7 +87,8 @@
                         </div>
                         <div class="logo d-none d-lg-flex">
                             <a href="{{ route('products.index') }}">
-                                <img src="assets/images/logo-icon.png" class="logo-icon" alt="" />
+                                
+                                 <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="Logo" />
                             </a>
                         </div>
                     </div>
