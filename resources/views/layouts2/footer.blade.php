@@ -11,10 +11,9 @@
 								</div>
 								<div class="phone mb-3">
 									<p class="mb-0 text-uppercase text-white">Phone</p>
-                                    <p><i class="fa fa-phone me-2"></i> +225 05 64 51 59 16 / +225 07 48 08 84 78</p>
-                        <p><i class="fa fa-phone me-2"></i> +225 05 64 76 27 27 / +225 01 53 57 57 34</p>
-                        <p><i class="fa fa-phone me-2"></i> +229 01 40 48 54 74 / +223 94 51 20 49</p>
-                        <p><i class="fa fa-phone me-2"></i> +221 77 745 32 04</p>
+                                    <p><i class="fa fa-phone me-2"></i> +229 01 92 84 00 00</p>
+                        <p><i class="fa fa-phone me-2"></i> +229 01 64 24 54 24</p>
+
 
                         <p><i class="fa fa-map-marker-alt me-2"></i> ABATTA, Abidjan, Côte d'Ivoire</p>
 								</div>
@@ -47,7 +46,7 @@
 						<div class="col">
 							<div class="footer-section3 mb-3">
 								<h6 class="mb-3 text-uppercase">Popular Tags</h6>
-								<div class="tags-box"> <a href="javascript:;" class="tag-link">Cloths</a>
+								<!-- <div class="tags-box"> <a href="javascript:;" class="tag-link">Cloths</a>
 									<a href="javascript:;" class="tag-link">Electronis</a>
 									<a href="javascript:;" class="tag-link">Furniture</a>
 									<a href="javascript:;" class="tag-link">Sports</a>
@@ -61,7 +60,7 @@
 									<a href="javascript:;" class="tag-link">Bags</a>
 									<a href="javascript:;" class="tag-link">Sofa</a>
 									<a href="javascript:;" class="tag-link">Shoes</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<div class="col">
