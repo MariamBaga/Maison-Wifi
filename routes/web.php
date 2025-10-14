@@ -33,11 +33,14 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home', function () {
     return view('home');
-})->name('home');
+})->name('home.index');
 
 Route::get('/aboutus', function () {
     return view('aboutsus');
 })->name('aboutus');
+
+
+
 Route::get('/contactus', function () {
     return view('contactus');
 })->name('contactus');

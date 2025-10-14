@@ -209,7 +209,7 @@
                     <h5 class="py-2 text-white">Navigation</h5>
                 </div>
                 <ul class="navbar-nav">
-                    <li class="nav-item active"> <a class="nav-link" href="{{ route('home') }}">Home </a>
+                    <li class="nav-item active"> <a class="nav-link" href="{{ route('home.index') }}">Home </a>
                     </li>
                     <!-- <li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
         <div class="dropdown-menu dropdown-large-menu">
