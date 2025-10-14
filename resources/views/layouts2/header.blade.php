@@ -126,7 +126,7 @@
                                 <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i
                                             class='bx bx-heart'></i></a>
                                 </li>
-                                <!-- <li class="nav-item dropdown dropdown-large">
+                                <li class="nav-item dropdown dropdown-large">
                                     <a href="#"
                                         class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
                                         data-bs-toggle="dropdown">
@@ -191,7 +191,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                </li> -->
+                                </li>
 
                             </ul>
                         </nav>
