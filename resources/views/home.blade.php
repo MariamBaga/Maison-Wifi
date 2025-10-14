@@ -22,7 +22,7 @@
 									</div>
 								</div>
 								<div class="col">
-									<img src="assets/images/slider/04.png" class="img-fluid" alt="...">
+									<img src="{{ asset('assets/images/products/maison1.jpeg')}}" class="img-fluid" alt="...">
 								</div>
 							</div>
 						</div>
@@ -38,7 +38,7 @@
 									</div>
 								</div>
 								<div class="col">
-									<img src="assets/images/slider/05.png" class="img-fluid" alt="...">
+                                <img src="{{ asset('assets/images/products/maison2.jpeg')}}" class="img-fluid" alt="...">
 								</div>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 									</div>
 								</div>
 								<div class="col">
-									<img src="assets/images/slider/03.png" class="img-fluid" alt="...">
+                                <img src="{{ asset('assets/images/products/maison3.jpeg')}}" class="img-fluid" alt="...">
 								</div>
 							</div>
 						</div>

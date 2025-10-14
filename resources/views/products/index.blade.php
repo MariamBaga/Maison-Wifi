@@ -37,7 +37,8 @@
     </form>
             </div>
 
-            <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+            <img src="{{ asset($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+
 
             <div class="card-body d-flex flex-column">
                 <p class="product-category font-13 mb-1">{{ $product->category->name ?? 'Uncategorized' }}</p>

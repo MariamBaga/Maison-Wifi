@@ -47,9 +47,12 @@ public function store(Request $request)
 
     // Gérer le téléchargement de l'image
     if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('products', 'public'); // stocke dans storage/app/public/products
-        $validated['image'] = $path;
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('articles'), $filename);
+        $validated['image'] = 'articles/' . $filename;
     }
+
 
     Product::create($validated);
 
@@ -82,14 +85,12 @@ public function update(Request $request, $id)
 
     // Gérer le téléchargement de l'image
     if ($request->hasFile('image')) {
-        // Supprimer l'ancienne image si elle existe
-        if ($product->image) {
-            Storage::disk('public')->delete($product->image);
-        }
-
-        $path = $request->file('image')->store('products', 'public');
-        $validated['image'] = $path;
+        $file = $request->file('image');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('articles'), $filename);
+        $validated['image'] = 'articles/' . $filename;
     }
+
 
     $product->update($validated);
 
