@@ -87,7 +87,7 @@
                         </div>
                         <div class="logo d-none d-lg-flex">
                             <a href="{{ route('products.index') }}">
-                                
+
                                  <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="Logo" />
                             </a>
                         </div>
@@ -127,7 +127,7 @@
                                 <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i
                                             class='bx bx-heart'></i></a>
                                 </li>
-                                <!-- <li class="nav-item dropdown dropdown-large">
+                                 <li class="nav-item dropdown dropdown-large">
                                     <a href="#"
                                         class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
                                         data-bs-toggle="dropdown">
@@ -166,8 +166,9 @@
                                                                 </button>
                                                             </form>
                                                             <div class="cart-product">
-                                                                <img src="{{ asset('storage/' . $item->image) }}"
+                                                                <img src="{{ asset($product->image) }}"
                                                                     alt="{{ $item->name }}" class="">
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -188,11 +189,11 @@
                                                 </div>
                                             </a>
                                             <div class="d-grid p-3 border-top">
-                                                <a href="checkout.html" class="btn btn-light btn-ecomm">CHECKOUT</a>
+                                                <a href="{{ route('cart.index') }}" class="btn btn-light btn-ecomm">CHECKOUT</a>
                                             </div>
                                         @endif
                                     </div>
-                                </li> -->
+                                </li>
 
                             </ul>
                         </nav>

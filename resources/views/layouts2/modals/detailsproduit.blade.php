@@ -10,7 +10,8 @@
                                                                         <div class="product-gallery owl-carousel owl-theme border mb-3 p-3" data-slider-id="{{ $product->id }}">
                                                                             @if($product->image)
                                                                                 <div class="item">
-                                                                                    <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
+
+                                                                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="{{ $product->name }}">
                                                                                 </div>
                                                                             @endif
                                                                             {{-- tu peux ajouter d’autres images ici --}}
@@ -18,7 +19,7 @@
                                                                         <div class="owl-thumbs d-flex justify-content-center" data-slider-id="{{ $product->id }}">
                                                                             @if($product->image)
                                                                                 <button class="owl-thumb-item">
-                                                                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                                                                                <img src="{{ asset($product->image) }}" class="img-fluid" alt="{{ $product->name }}">
                                                                                 </button>
                                                                             @endif
                                                                         </div>
@@ -77,7 +78,7 @@
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="quantity" value="1">
         <button type="submit" class="btn btn-light btn-ecomm w-100">
-            <i class="bx bxs-cart-add"></i> Add to Cart
+            <i class="bx bxs-cart-add"></i> Ajouter au panier
         </button>
     </form>
                                                                            <!-- 💖 Ajouter à la wishlist -->
@@ -85,7 +86,7 @@
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <button type="submit" class="btn btn-link btn-ecomm w-100">
-            <i class="bx bx-heart"></i> Add to Wishlist
+            <i class="bx bx-heart"></i> Ajouter à la favoris
         </button>
     </form>
                                                                         </div>
