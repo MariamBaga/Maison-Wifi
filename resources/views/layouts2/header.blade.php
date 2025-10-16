@@ -284,9 +284,9 @@
         <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}">Shop</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{ route('aboutus') }}">A propos de nous</a></li>
 
-                   
 
-                <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('contact.form') }}">Contact Us</a></li> -->
+
+                <li class="nav-item"> <a class="nav-link" href="{{ route('contact.form') }}">Contactez-nous</a></li>
                 <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('categories.index') }}">Our Store</a></li> -->
                 <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                         href="#" data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>

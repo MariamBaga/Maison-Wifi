@@ -320,7 +320,7 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
-       
+
         ['header' => 'GESTION PRODUITS'],
         [
             'text' => 'Produits',
@@ -355,47 +355,47 @@ return [
             ],
         ],
 
-        ['header' => 'COMMANDES ET CLIENTS'],
-        [
-            'text' => 'Commandes',
-            'icon' => 'fas fa-shopping-cart',
-            'route' => 'orders.index',
-        ],
-        [
-            'text' => 'Liste de souhaits',
-            'icon' => 'fas fa-heart',
-            'url' => '/wishlist',
-        ],
-        [
-            'text' => 'Panier',
-            'icon' => 'fas fa-shopping-basket',
-            'route' => 'cart.index',
-        ],
+        // ['header' => 'COMMANDES ET CLIENTS'],
+        // [
+        //     'text' => 'Commandes',
+        //     'icon' => 'fas fa-shopping-cart',
+        //     'route' => 'orders.index',
+        // ],
+        // [
+        //     'text' => 'Liste de souhaits',
+        //     'icon' => 'fas fa-heart',
+        //     'url' => '/wishlist',
+        // ],
+        // [
+        //     'text' => 'Panier',
+        //     'icon' => 'fas fa-shopping-basket',
+        //     'route' => 'cart.index',
+        // ],
 
-        ['header' => 'BLOG & CONTENU'],
-        [
-            'text' => 'Articles',
-            'icon' => 'fas fa-newspaper',
-            'submenu' => [
-                [
-                    'text' => 'Tous les articles',
-                    'route' => 'posts.index',
-                    'icon' => 'fas fa-list',
-                ],
-                [
-                    'text' => 'Ajouter un article',
-                    'route' => 'posts.create',
-                    'icon' => 'fas fa-plus',
-                ],
-            ],
-        ],
+        // ['header' => 'BLOG & CONTENU'],
+        // [
+        //     'text' => 'Articles',
+        //     'icon' => 'fas fa-newspaper',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Tous les articles',
+        //             'route' => 'posts.index',
+        //             'icon' => 'fas fa-list',
+        //         ],
+        //         [
+        //             'text' => 'Ajouter un article',
+        //             'route' => 'posts.create',
+        //             'icon' => 'fas fa-plus',
+        //         ],
+        //     ],
+        // ],
 
-        ['header' => 'MESSAGERIE'],
-        [
-            'text' => 'Messages reçus',
-            'icon' => 'fas fa-envelope',
-            'route' => 'contacts.index',
-        ],
+        // ['header' => 'MESSAGERIE'],
+        // [
+        //     'text' => 'Messages reçus',
+        //     'icon' => 'fas fa-envelope',
+        //     'route' => 'contacts.index',
+        // ],
 
         ['header' => 'PAGES PUBLIQUES'],
         [
@@ -408,11 +408,11 @@ return [
             'route' => 'aboutus',
             'icon' => 'fas fa-info-circle',
         ],
-        [
-            'text' => 'Contact',
-            'route' => 'contact.form',
-            'icon' => 'fas fa-phone',
-        ],
+        // [
+        //     'text' => 'Contact',
+        //     'route' => 'contact.form',
+        //     'icon' => 'fas fa-phone',
+        // ],
 
         ['header' => 'PARAMÈTRES UTILISATEUR'],
         [
