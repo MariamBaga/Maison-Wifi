@@ -88,7 +88,8 @@
                         <div class="logo d-none d-lg-flex">
                             <a href="{{ route('products.index') }}">
 
-                                 <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="Logo" />
+                                <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon"
+                                    alt="Logo" />
                             </a>
                         </div>
                     </div>
@@ -127,32 +128,34 @@
                                 <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i
                                             class='bx bx-heart'></i></a>
                                 </li>
-                                 <li class="nav-item dropdown dropdown-large">
+                                <li class="nav-item dropdown dropdown-large">
                                     <a href="#"
                                         class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
                                         data-bs-toggle="dropdown">
-                                        <span class="alert-count">{{ $cartCount }}</span>
+                                        <span class="alert-count">{{ $cartCount ?? 0 }}</span>
                                         <i class='bx bx-shopping-bag'></i>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-end">
                                         <a href="{{ route('cart.index') }}">
                                             <div class="cart-header">
-                                                <p class="cart-header-title mb-0">{{ $cartCount }}
-                                                    {{ Str::plural('ITEM', $cartCount) }}</p>
+                                                <p class="cart-header-title mb-0">{{ $cartCount ?? 0 }}
+                                                    {{ Str::plural('ITEM', $cartCount ?? 0) }}</p>
                                                 <p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
                                             </div>
                                         </a>
 
                                         <div class="cart-list">
-                                            @forelse($cartItems as $item)
+                                            @forelse($cartItems ?? [] as $item)
                                                 <a class="dropdown-item"
                                                     href="{{ route('products.show', $item->id) }}">
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1">
-                                                            <h6 class="cart-product-title">{{ $item->name }}</h6>
-                                                            <p class="cart-product-price">{{ $item->pivot->quantity }}
-                                                                x {{ number_format($item->price, 0, ',', ' ') }} FCFA
+                                                            <h6 class="cart-product-title mb-0">{{ $item->name }}
+                                                            </h6>
+                                                            <p class="cart-product-price mb-0">
+                                                                {{ $item->pivot->quantity }} ×
+                                                                {{ number_format($item->price, 0, ',', ' ') }} FCFA
                                                             </p>
                                                         </div>
                                                         <div class="position-relative">
@@ -166,9 +169,9 @@
                                                                 </button>
                                                             </form>
                                                             <div class="cart-product">
-                                                                <img src="{{ asset($product->image) }}"
-                                                                    alt="{{ $item->name }}" class="">
-
+                                                                <img src="{{ asset($item->image) }}"
+                                                                    alt="{{ $item->name }}" class="rounded"
+                                                                    style="width: 50px; height: 50px; object-fit: cover;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -180,16 +183,19 @@
                                             @endforelse
                                         </div>
 
-                                        @if ($cartCount > 0)
+                                        @if (!empty($cartItems) && $cartCount > 0)
                                             <a href="{{ route('cart.index') }}">
                                                 <div class="text-center cart-footer d-flex align-items-center">
                                                     <h5 class="mb-0">TOTAL</h5>
                                                     <h5 class="mb-0 ms-auto">
-                                                        {{ number_format($cartTotal, 0, ',', ' ') }} FCFA</h5>
+                                                        {{ number_format($cartTotal, 0, ',', ' ') }} FCFA
+                                                    </h5>
                                                 </div>
                                             </a>
                                             <div class="d-grid p-3 border-top">
-                                                <a href="{{ route('cart.index') }}" class="btn btn-light btn-ecomm">CHECKOUT</a>
+                                                <a href="{{ route('cart.index') }}" class="btn btn-light btn-ecomm">
+                                                    CHECKOUT
+                                                </a>
                                             </div>
                                         @endif
                                     </div>
@@ -213,124 +219,73 @@
                 <ul class="navbar-nav">
                     <li class="nav-item active"> <a class="nav-link" href="{{ route('home.index') }}">Home </a>
                     </li>
-                    <!-- <li class="nav-item dropdown">	<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">Categories <i class='bx bx-chevron-down'></i></a>
-        <div class="dropdown-menu dropdown-large-menu">
-         <div class="row">
-          <div class="col-md-4">
-           <h6 class="large-menu-title">Fashion</h6>
-           <ul class="">
-            <li><a href="#">Casual T-Shirts</a>
-            </li>
-            <li><a href="#">Formal Shirts</a>
-            </li>
-            <li><a href="#">Jackets</a>
-            </li>
-            <li><a href="#">Jeans</a>
-            </li>
-            <li><a href="#">Dresses</a>
-            </li>
-            <li><a href="#">Sneakers</a>
-            </li>
-            <li><a href="#">Belts</a>
-            </li>
-            <li><a href="#">Sports Shoes</a>
-            </li>
-           </ul>
-          </div>
-
-          <div class="col-md-4">
-           <h6 class="large-menu-title">Electronics</h6>
-           <ul class="">
-            <li><a href="#">Mobiles</a>
-            </li>
-            <li><a href="#">Laptops</a>
-            </li>
-            <li><a href="#">Macbook</a>
-            </li>
-            <li><a href="#">Televisions</a>
-            </li>
-            <li><a href="#">Lighting</a>
-            </li>
-            <li><a href="#">Smart Watch</a>
-            </li>
-            <li><a href="#">Galaxy Phones</a>
-            </li>
-            <li><a href="#">PC Monitors</a>
-            </li>
-           </ul>
-          </div>
-
-          <div class="col-md-4">
-           <div class="pramotion-banner1">
-            <img src="assets/images/gallery/menu-img.jpg" class="img-fluid" alt="" />
-           </div>
-          </div>
-
-         </div>
-
-        </div>
-
-       </li> -->
                     <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
-                            href="#" data-bs-toggle="dropdown">Shop <i class='bx bx-chevron-down'></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop
-                                    Layouts <i class='bx bx-chevron-right float-end'></i></a>
-                                <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item" href="shop-grid-left-sidebar.html">Shop Grid - Left
-                                            Sidebar</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="shop-grid-right-sidebar.html">Shop Grid - Right
-                                            Sidebar</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="shop-list-left-sidebar.html">Shop List - Left
-                                            Sidebar</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="shop-list-right-sidebar.html">Shop List - Right
-                                            Sidebar</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="shop-grid-filter-on-top.html">Shop Grid - Top
-                                            Filter</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="shop-list-filter-on-top.html">Shop List - Top
-                                            Filter</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="dropdown-item dropdown-toggle dropdown-toggle-nocaret" href="#">Shop
-                                    Pages <i class='bx bx-chevron-right float-end'></i></a>
-                                <ul class="submenu dropdown-menu">
-                                    <li><a class="dropdown-item" href="shop-cart.html">Shop Cart</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="shop-categories.html">Shop Categories</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="checkout-details.html">Checkout Details</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="checkout-shipping.html">Checkout Shipping</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="checkout-payment.html">Checkout Payment</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="checkout-review.html">Checkout Review</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="checkout-complete.html">Checkout Complete</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="order-tracking.html">Order Tracking</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="product-comparison.html">Product Comparison</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('aboutus') }}">A propos de nous</a></li>
-                            <li><a class="dropdown-item" href="{{ route('contact.form') }}">Contact Us</a></li>
-                            <li><a class="dropdown-item" href="{{ route('login') }}">Sign In</a></li>
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Sign Up</a></li>
-                    </li>
-                    <li><a class="dropdown-item" href="authentication-forgot-password.html">Forgot Password</a>
+                            href="#" data-bs-toggle="dropdown">Categories <i
+                                class='bx bx-chevron-down'></i></a>
+                        <div class="dropdown-menu dropdown-large-menu">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6 class="large-menu-title">Fashion</h6>
+                                    <ul class="">
+                                        <li><a href="#">Casual T-Shirts</a>
+                                        </li>
+                                        <li><a href="#">Formal Shirts</a>
+                                        </li>
+                                        <li><a href="#">Jackets</a>
+                                        </li>
+                                        <li><a href="#">Jeans</a>
+                                        </li>
+                                        <li><a href="#">Dresses</a>
+                                        </li>
+                                        <li><a href="#">Sneakers</a>
+                                        </li>
+                                        <li><a href="#">Belts</a>
+                                        </li>
+                                        <li><a href="#">Sports Shoes</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <h6 class="large-menu-title">Electronics</h6>
+                                    <ul class="">
+                                        <li><a href="#">Mobiles</a>
+                                        </li>
+                                        <li><a href="#">Laptops</a>
+                                        </li>
+                                        <li><a href="#">Macbook</a>
+                                        </li>
+                                        <li><a href="#">Televisions</a>
+                                        </li>
+                                        <li><a href="#">Lighting</a>
+                                        </li>
+                                        <li><a href="#">Smart Watch</a>
+                                        </li>
+                                        <li><a href="#">Galaxy Phones</a>
+                                        </li>
+                                        <li><a href="#">PC Monitors</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="pramotion-banner1">
+                                        <img src="assets/images/gallery/menu-img.jpg" class="img-fluid"
+                                            alt="" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </li> -->
-                </ul>
-                </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}">Shop</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('aboutus') }}">A propos de nous</a></li>
+
+        <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}">Shop</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('aboutus') }}">A propos de nous</a></li>
+
+                   
+
                 <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('contact.form') }}">Contact Us</a></li> -->
                 <!-- <li class="nav-item"> <a class="nav-link" href="{{ route('categories.index') }}">Our Store</a></li> -->
                 <!-- <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"

@@ -105,12 +105,9 @@
 
                                 <div class="my-4"></div>
                                 <div class="d-grid">
-                                    <form action="{{ route('orders.store') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-white btn-ecomm">
-                                            Passer la commande
-                                        </button>
-                                    </form>
+                                <a href="{{ route('orders.index') }}" class="btn btn-white btn-ecomm">
+        Passer la commande
+    </a>
                                 </div>
                             </div>
                         </div>

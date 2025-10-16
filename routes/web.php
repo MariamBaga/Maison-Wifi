@@ -17,12 +17,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home1');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('admin.dashboard');
-// })->middleware(['auth', 'role:admin'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -90,7 +90,7 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 
 // Afficher le panier
 
-Route::middleware(['auth'])->group(function () {
+
     // 🛒 Cart
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'show'])->name('wishlist.show');
     Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
     Route::post('/wishlist/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
-});
+
 
 
 

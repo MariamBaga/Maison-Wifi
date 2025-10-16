@@ -31,21 +31,27 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-    View::composer('*', function ($view) {
-        if (auth()->check()) {
-            $cart = Cart::where('user_id', auth()->id())->with('products')->first();
-            $cartItems = $cart ? $cart->products : collect();
-            $cartTotal = $cartItems->sum(fn($p) => $p->pivot->quantity * $p->price);
-            $cartCount = $cartItems->sum(fn($p) => $p->pivot->quantity);
-        } else {
-            $cartItems = collect();
-            $cartTotal = 0;
+        View::composer('*', function ($view) {
+            $cart = null;
             $cartCount = 0;
-        }
+            $cartItems = [];
+            $cartTotal = 0;
 
-        $view->with(compact('cartItems', 'cartTotal', 'cartCount'));
-    });
+            if (auth()->check()) {
+                $cart = Cart::where('user_id', auth()->id())->with('products')->first();
+            } else {
+                $cart = Cart::where('session_id', session()->getId())->with('products')->first();
+            }
+
+            if ($cart) {
+                $cartItems = $cart->products;
+                $cartCount = $cartItems->sum('pivot.quantity');
+                $cartTotal = $cartItems->sum(fn($p) => $p->price * $p->pivot->quantity);
+            }
+
+            $view->with(compact('cart', 'cartCount', 'cartItems', 'cartTotal'));
+        });
     }
 
-    
+
 }

@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            // ✅ rendre user_id nullable pour les invités
+            $table->foreignId('user_id')
+                ->nullable() // <- important
+                ->constrained()
+                ->onDelete('cascade');
+
+            // ✅ session_id pour les invités
+            $table->string('session_id')->nullable()->index();
+
             $table->timestamps();
         });
-
-
-
     }
 
     /**
