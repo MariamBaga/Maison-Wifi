@@ -9,7 +9,7 @@
     @include('layouts2.links')
 </head>
 
-<body class="bg-theme bg-theme11">
+<body class="bg-theme bg-theme9">
     <b class="screen-overlay"></b>
     <div class="wrapper">
         {{-- Header --}}
