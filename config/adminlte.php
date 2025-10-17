@@ -355,12 +355,12 @@ return [
             ],
         ],
 
-        ['header' => 'COMMANDES ET CLIENTS'],
-        [
-            'text' => 'Commandes',
-            'icon' => 'fas fa-shopping-cart',
-            'route' => 'admin.orders.index',
-        ],
+        // ['header' => 'COMMANDES ET CLIENTS'],
+        // [
+        //     'text' => 'Commandes',
+        //     'icon' => 'fas fa-shopping-cart',
+        //     'route' => 'admin.orders.index',
+        // ],
         // [
         //     'text' => 'Liste de souhaits',
         //     'icon' => 'fas fa-heart',
