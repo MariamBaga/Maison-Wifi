@@ -53,38 +53,34 @@ Route::get('/contactus', function () {
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
+Route::middleware(['auth', 'role:admin'])->group(function () {
 // Partie admin
 Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/admin/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+// 🔒 Liste des produits pour l'administrateur uniquement
+
+    Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('admin.products.index');
+});
 
 
 
-// Liste de toutes les catégories
+
+// --- Côté public : affichage libre ---
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-
-// Formulaire pour ajouter une nouvelle catégorie
-Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-
-// Enregistrer une nouvelle catégorie
-Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-
-// Détail d’une catégorie
 Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 
-// Formulaire de modification
-Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-
-// Mettre à jour une catégorie
-Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
-
-// Supprimer une catégorie
-Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
-
+// --- Côté admin : gestion protégée ---
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/categories', [CategoryController::class, 'adminIndex'])->name('admin.categories.index');
+    Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/admin/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/admin/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/admin/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
 
 
 
@@ -110,6 +106,12 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 
 
 
+    Route::prefix('admin')->middleware(['auth','role:admin'])->name('admin.')->group(function() {
+        Route::get('orders', [\App\Http\Controllers\AdminOrderController::class, 'index'])->name('orders.index');
+        Route::get('orders/{id}', [\App\Http\Controllers\AdminOrderController::class, 'show'])->name('orders.show');
+        Route::patch('orders/{id}/status', [\App\Http\Controllers\AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
+        Route::delete('orders/{id}', [\App\Http\Controllers\AdminOrderController::class, 'destroy'])->name('orders.destroy');
+    });
 
 
 

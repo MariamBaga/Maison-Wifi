@@ -328,7 +328,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Liste des produits',
-                    'route' => 'products.index',
+                    'route' => 'admin.products.index',
                     'icon' => 'fas fa-list',
                 ],
                 [
@@ -344,7 +344,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Liste des catégories',
-                    'route' => 'categories.index',
+                    'route' => 'admin.categories.index',
                     'icon' => 'fas fa-list',
                 ],
                 [
@@ -355,12 +355,12 @@ return [
             ],
         ],
 
-        // ['header' => 'COMMANDES ET CLIENTS'],
-        // [
-        //     'text' => 'Commandes',
-        //     'icon' => 'fas fa-shopping-cart',
-        //     'route' => 'orders.index',
-        // ],
+        ['header' => 'COMMANDES ET CLIENTS'],
+        [
+            'text' => 'Commandes',
+            'icon' => 'fas fa-shopping-cart',
+            'route' => 'admin.orders.index',
+        ],
         // [
         //     'text' => 'Liste de souhaits',
         //     'icon' => 'fas fa-heart',

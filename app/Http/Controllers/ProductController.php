@@ -16,6 +16,13 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
+    public function adminIndex()
+{
+    $products = \App\Models\Product::with('category')->latest()->paginate(10);
+    return view('admin.products.index', compact('products'));
+}
+
+
     // Affiche un produit spécifique
     public function show($id)
     {
@@ -52,6 +59,8 @@ public function store(Request $request)
         $file->move(public_path('articles'), $filename);
         $validated['image'] = 'articles/' . $filename;
     }
+
+   
 
 
     Product::create($validated);
