@@ -1,20 +1,13 @@
 @extends('layouts2.master')
-@section('title', 'Contact Us')
+@section('title', 'Contactez-nous')
 @section('content')
 
 <div class="page-wrapper">
     <div class="page-content">
-        @include('layouts2.breadcrumb', ['title' => 'Contact Us'])
+        @include('layouts2.breadcrumb', ['title' => 'Contactez-nous'])
 
         <!--start page content-->
-        <section class="py-4">
-            <div class="container">
-                <h3 class="d-none">Google Map</h3>
-                <div class="contact-map p-3 bg-dark-1 rounded-0 shadow-none">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6319269302!2d144.49269200596396!3d-37.971237009163936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sin!4v1618835176130!5m2!1sen!2sin" class="w-100" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
-            </div>
-        </section>
+        
 
         <section class="py-4">
             <div class="container">
@@ -25,21 +18,21 @@
                             <form method="POST" action="{{ route('contact.store') }}">
                                 @csrf
                                 <div class="form-body">
-                                    <h6 class="mb-0 text-uppercase">Drop us a line</h6>
+                                    <h6 class="mb-0 text-uppercase">Envoyez-nous un message</h6>
                                     <div class="my-3 border-bottom"></div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Enter Your Name</label>
+                                        <label class="form-label">Votre nom</label>
                                         <input type="text" name="name" class="form-control" required />
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Enter Email</label>
+                                        <label class="form-label">Votre email</label>
                                         <input type="email" name="email" class="form-control" required />
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Phone Number</label>
+                                        <label class="form-label">Numéro de téléphone</label>
                                         <input type="text" name="phone" class="form-control" />
                                     </div>
 
@@ -49,7 +42,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <button class="btn btn-light btn-ecomm" type="submit">Send Message</button>
+                                        <button class="btn btn-light btn-ecomm" type="submit">Envoyer</button>
                                     </div>
                                 </div>
                             </form>
@@ -60,12 +53,12 @@
                     <div class="col-lg-4">
                         <div class="p-3 bg-dark-1">
                             <div class="address mb-3">
-                                <p class="mb-0 text-uppercase text-white">Address</p>
-                                <p class="mb-0 font-12">123 Street Name, City, Australia</p>
+                                <p class="mb-0 text-uppercase text-white">Adresse</p>
+                                <p class="mb-0 font-12">123 Nom de la rue, Ville, Australie</p>
                             </div>
                             <div class="phone mb-3">
-                                <p class="mb-0 text-uppercase text-white">Phone</p>
-                                <p class="mb-0 font-13">Toll Free (123) 472-796</p>
+                                <p class="mb-0 text-uppercase text-white">Téléphone</p>
+                                <p class="mb-0 font-13">Numéro gratuit : (123) 472-796</p>
                                 <p class="mb-0 font-13">Mobile : +91-9910XXXX</p>
                             </div>
                             <div class="email mb-3">
@@ -73,8 +66,8 @@
                                 <p class="mb-0 font-13">mail@example.com</p>
                             </div>
                             <div class="working-days mb-3">
-                                <p class="mb-0 text-uppercase text-white">WORKING DAYS</p>
-                                <p class="mb-0 font-13">Mon - FRI / 9:30 AM - 6:30 PM</p>
+                                <p class="mb-0 text-uppercase text-white">Jours d'ouverture</p>
+                                <p class="mb-0 font-13">Lun - Ven / 9h30 - 18h30</p>
                             </div>
                         </div>
                     </div>
