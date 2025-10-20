@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Maison WiFi',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Maison</b>WIFI',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img_class' => 'brand-image img-circle elevation-3 bg-white',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'Maison Wifi Logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -355,12 +355,12 @@ return [
             ],
         ],
 
-        // ['header' => 'COMMANDES ET CLIENTS'],
-        // [
-        //     'text' => 'Commandes',
-        //     'icon' => 'fas fa-shopping-cart',
-        //     'route' => 'admin.orders.index',
-        // ],
+        ['header' => 'COMMANDES ET CLIENTS'],
+        [
+            'text' => 'Commandes',
+            'icon' => 'fas fa-shopping-cart',
+            'route' => 'admin.orders.index',
+        ],
         // [
         //     'text' => 'Liste de souhaits',
         //     'icon' => 'fas fa-heart',
@@ -415,11 +415,11 @@ return [
         // ],
 
         ['header' => 'PARAMÈTRES UTILISATEUR'],
-        [
-            'text' => 'Profil',
-            'route' => 'profile.edit',
-            'icon' => 'fas fa-user',
-        ],
+        // [
+        //     'text' => 'Profil',
+        //     'route' => 'profile.edit',
+        //     'icon' => 'fas fa-user',
+        // ],
         [
             'text' => 'Déconnexion',
             'url' => 'logout',

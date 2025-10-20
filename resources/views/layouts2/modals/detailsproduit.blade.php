@@ -85,7 +85,7 @@
     <form action="{{ route('wishlist.add') }}" method="POST">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
-        <button type="submit" class="btn btn-link btn-ecomm w-100">
+        <button type="submit" class="btn btn-link btn-ecomm text-primary w-100">
             <i class="bx bx-heart"></i> Ajouter à la favoris
         </button>
     </form>

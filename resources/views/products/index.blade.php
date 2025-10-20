@@ -54,12 +54,12 @@
                                                         <div class="d-flex align-items-center mb-2">
                                                             <div class="product-price">
                                                                 @if ($product->price < 100)
-                                                                    <span class="me-1 text-decoration-line-through">
+                                                                    <span class="me-1 text-decoration-line-through text-primary">
                                                                         {{ number_format($product->price + 50, 0, ',', ' ') }}
                                                                         FCFA
                                                                     </span>
                                                                 @endif
-                                                                <span class="fs-5 text-white">
+                                                                <span class="fs-5 text-white text-primary">
                                                                     {{ number_format($product->price, 0, ',', ' ') }} FCFA
                                                                 </span>
                                                             </div>
@@ -84,7 +84,7 @@
                                                                     </button>
                                                                 </form>
                                                                 <!-- Quick View button -->
-                                                                <a href="javascript:;" class="btn btn-link btn-ecomm"
+                                                                <a href="javascript:;" class="btn btn-link btn-ecomm text-primary"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#QuickViewProduct-{{ $product->id }}">
                                                                     <i class="bx bx-zoom-in"></i> Détails
