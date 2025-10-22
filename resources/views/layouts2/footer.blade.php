@@ -8,7 +8,7 @@
                     <div class="single-footer-widget">
                         <div class="widget-head">
                             <a href="{{ route('home.index') }}" class="footer-logo">
-                                <img src="{{ asset('assets/images/logo-icon.png') }}" alt="Maison Wifi Logo">
+                                <!-- <img src="{{ asset('assets/images/logo-icon.png') }}" alt="Maison Wifi Logo"> -->
                             </a>
                         </div>
                         <div class="footer-content">
