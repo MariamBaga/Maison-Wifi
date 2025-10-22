@@ -4,7 +4,6 @@
 
 <div class="page-wrapper">
     <div class="page-content">
-        @include('layouts2.breadcrumb', ['title' => 'Finaliser la commande'])
 
         <section class="py-4">
             <div class="container">

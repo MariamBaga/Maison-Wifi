@@ -2,121 +2,103 @@
 @section('title', 'Mon Panier')
 @section('content')
 
-<div class="page-wrapper">
-    <div class="page-content">
-        @include('layouts2.breadcrumb', ['title' => 'Mon Panier'])
 
-        <section class="py-4">
+
+
+        <section class="cart-section section-padding">
             <div class="container">
-                <div class="shop-cart">
-                    <div class="row">
-                        <div class="col-12 col-xl-8">
-                            <div class="shop-cart-list mb-3 p-3">
+                <div class="cart-list-area">
+                    <div class="top-content">
+                        <h2>Mon Panier</h2>
+                        <ul class="list">
+                            <li><a href="{{ route('home.index') }}">Accueil</a></li>
+                            <li>Panier</li>
+                        </ul>
+                    </div>
 
-                                @if($cart && $cart->products->count() > 0)
-                                    @foreach($cart->products as $product)
-                                        <div class="row align-items-center g-3 mb-3 border-bottom pb-3">
-                                            <div class="col-12 col-lg-6">
-                                                <div class="d-lg-flex align-items-center gap-2">
-                                                    <div class="cart-img text-center text-lg-start">
-                                                        <img src="{{ asset($product->image) }}" width="130" alt="">
-                                                    </div>
-                                                    <div class="cart-detail text-center text-lg-start">
-                                                        <h6 class="mb-2">{{ $product->name }}</h6>
-                                                        <h5 class="mb-0 text-primary">
-                                                            {{ number_format($product->price, 0, ',', ' ') }} FCFA
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12 col-lg-3">
-                                                <form action="{{ route('cart.update') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                    <input type="number"
-                                                        name="quantity"
-                                                        class="form-control text-center"
-                                                        value="{{ $product->pivot->quantity }}"
-                                                        min="1"
-                                                        onchange="this.form.submit()">
-                                                </form>
-                                            </div>
-
-                                            <div class="col-12 col-lg-3 text-center">
-                                                <form action="{{ route('cart.remove') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                    <button class="btn btn-light btn-ecomm">
-                                                        <i class='bx bx-x-circle'></i> Retirer
-                                                    </button>
-                                                </form>
-                                            </div>
+                    @if($cart && $cart->products->count() > 0)
+                    <div class="table-responsive">
+                        <table class="table common-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Produit</th>
+                                    <th class="text-center">Prix</th>
+                                    <th class="text-center">Quantité</th>
+                                    <th class="text-center">Sous-total</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $total = 0; @endphp
+                                @foreach($cart->products as $product)
+                                @php $subtotal = $product->price * $product->pivot->quantity; @endphp
+                                @php $total += $subtotal; @endphp
+                                <tr class="align-items-center py-3">
+                                    <td>
+                                        <div class="cart-item-thumb d-flex align-items-center gap-4">
+                                            <form action="{{ route('cart.remove') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <button type="submit" class="text-danger border-0 bg-transparent">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                            <img class="w-100" src="{{ asset($product->image) }}" alt="{{ $product->name }}" width="70">
+                                            <span class="head text-nowrap">{{ $product->name }}</span>
                                         </div>
-                                    @endforeach
-
-                                    <div class="d-lg-flex align-items-center gap-2 mt-4">
-                                        <a href="{{ route('products.index') }}" class="btn btn-light btn-ecomm">
-                                            <i class='bx bx-shopping-bag'></i> Continuer vos achats
-                                        </a>
-
-                                        <form action="{{ route('cart.clear') }}" method="POST" class="ms-auto">
+                                    </td>
+                                    <td class="text-center">{{ number_format($product->price, 0, ',', ' ') }} FCFA</td>
+                                    <td class="text-center">
+                                        <form action="{{ route('cart.update') }}" method="POST" class="d-flex justify-content-center align-items-center gap-1">
                                             @csrf
-                                            <button class="btn btn-light btn-ecomm">
-                                                <i class='bx bx-x-circle'></i> Vider le panier
-                                            </button>
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <button type="submit" name="action" value="decrement" class="btn btn-light btn-sm">-</button>
+                                            <input type="text" name="quantity" value="{{ $product->pivot->quantity }}" class="form-control text-center" style="width:50px;">
+                                            <button type="submit" name="action" value="increment" class="btn btn-light btn-sm">+</button>
                                         </form>
-                                    </div>
+                                    </td>
+                                    <td class="text-center">{{ number_format($subtotal, 0, ',', ' ') }} FCFA</td>
+                                    <td class="text-center">
+                                        <form action="{{ route('cart.remove') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
-                                @else
-                                    <p class="text-center py-4">Votre panier est vide.</p>
-                                    <div class="text-center">
-                                        <a href="{{ route('products.index') }}" class="btn btn-primary">
-                                            Voir les produits
-                                        </a>
-                                    </div>
-                                @endif
-                            </div>
+                    <div class="coupon-items d-flex flex-md-nowrap flex-wrap justify-content-between align-items-center gap-4 pt-4">
+                        <form action="#" method="POST" class="d-flex flex-sm-nowrap flex-wrap align-items-center gap-3">
+                            @csrf
+                            <input type="text" name="coupon_code" placeholder="Entrez le code promo" class="form-control">
+                            <button type="submit" class="theme-btn alt-color radius-xs">Appliquer</button>
+                        </form>
+                        <a href="{{ route('cart.index') }}" class="theme-btn alt-color radius-xs">Mettre à jour le panier</a>
+                    </div>
+
+                    <div class="checkout-summary mt-4 p-3 bg-dark-1 text-white rounded">
+                        <h5>Récapitulatif</h5>
+                        <p class="mb-2">Sous-total: <span class="float-end">{{ number_format($total, 0, ',', ' ') }} FCFA</span></p>
+                        <div class="my-3 border-top"></div>
+                        <h5>Total: <span class="float-end">{{ number_format($total, 0, ',', ' ') }} FCFA</span></h5>
+                        <div class="my-4"></div>
+                        <a href="{{ route('orders.index') }}" class="btn btn-white btn-ecomm w-100">Passer la commande</a>
+                    </div>
+
+                    @else
+                        <p class="text-center py-4">Votre panier est vide.</p>
+                        <div class="text-center">
+                            <a href="{{ route('products.index') }}" class="btn btn-primary">Voir les produits</a>
                         </div>
+                    @endif
 
-                        <!-- Résumé panier -->
-                        <div class="col-12 col-xl-4">
-                            @php
-                                $total = 0;
-                                if ($cart) {
-                                    foreach ($cart->products as $product) {
-                                        $total += $product->price * $product->pivot->quantity;
-                                    }
-                                }
-                            @endphp
-                            <div class="checkout-form p-3 bg-dark-1 text-white rounded">
-                                <h5 class="mb-3">Récapitulatif</h5>
-                                <p class="mb-2">Sous-total:
-                                    <span class="float-end">
-                                        {{ number_format($total, 0, ',', ' ') }} FCFA
-                                    </span>
-                                </p>
-                                <div class="my-3 border-top"></div>
-                                <h5>Total:
-                                    <span class="float-end">
-                                        {{ number_format($total, 0, ',', ' ') }} FCFA
-                                    </span>
-                                </h5>
-
-                                <div class="my-4"></div>
-                                <div class="d-grid">
-                                <a href="{{ route('orders.index') }}" class="btn btn-white btn-ecomm">
-        Passer la commande
-    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div><!-- end row -->
                 </div>
             </div>
         </section>
-
     </div>
 </div>
 

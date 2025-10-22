@@ -2,122 +2,157 @@
 @section('title', 'Article')
 @section('content')
 
-    <div class="page-wrapper">
-        <div class="page-content">
-            @include('layouts2.breadcrumb', ['title' => 'Article'])
+<!-- product-details-Section Start -->
+<section class="product-details-section section-padding fix">
+    <div class="container">
+        <div class="product-details-wrapper">
+            <div class="top-content">
+                <h2>Only Categories</h2>
+                <ul class="list">
+                    <li>Home</li>
+                    <li>Only Categories</li>
+                </ul>
+            </div>
 
-            <!--start shop area-->
-            <section class="py-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product-wrapper">
+            <div class="product-details-sideber">
+                <div class="product-details-wrap">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#Course" data-bs-toggle="tab" class="nav-link active">
+                                <i class="fa-regular fa-grid-2"></i>
+                            </a>
+                        </li>
 
-                                <!-- Toolbox -->
-                                <div class="toolbox d-lg-flex align-items-center mb-3 gap-2 p-3 bg-dark-1">
-                                    <!-- Ajoute ici tes filtres ou options -->
-                                </div>
-
-                                <!-- Product Grid -->
-                                <div class="product-grid">
-                                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
-                                        @foreach ($products as $product)
-                                            <div class="col">
-                                                <div class="card rounded-0 product-card h-100">
-                                                    <!-- Card Header & Image -->
-                                                    <div
-                                                        class="card-header bg-transparent border-bottom-0 d-flex justify-content-end gap-2">
-                                                        <a href="javascript:;" class="product-compare"><i
-                                                                class="bx bx-git-compare"></i></a>
-                                                        <!-- 💖 Ajouter à la wishlist -->
-                                                        <form action="{{ route('wishlist.add') }}" method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="product_id"
-                                                                value="{{ $product->id }}">
-                                                            <button type="submit" class="btn btn-link btn-ecomm w-100">
-                                                                <i class="bx bx-heart"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-
-                                                    <img src="{{ asset($product->image) }}" class="card-img-top"
-                                                        alt="{{ $product->name }}">
-
-
-                                                    <div class="card-body d-flex flex-column">
-                                                        <p class="product-category font-13 mb-1">
-                                                            {{ $product->category->name ?? 'Uncategorized' }}</p>
-                                                        <a href="{{ route('products.show', $product->id) }}">
-                                                            <h6 class="product-name mb-2">{{ $product->name }}</h6>
-                                                        </a>
-
-                                                        <div class="d-flex align-items-center mb-2">
-                                                            <div class="product-price">
-                                                                @if ($product->price < 100)
-                                                                    <span class="me-1 text-decoration-line-through text-primary">
-                                                                        {{ number_format($product->price + 50, 0, ',', ' ') }}
-                                                                        FCFA
-                                                                    </span>
-                                                                @endif
-                                                                <span class="fs-5 text-white text-primary">
-                                                                    {{ number_format($product->price, 0, ',', ' ') }} FCFA
-                                                                </span>
-                                                            </div>
-                                                            <div class="ms-auto">
-                                                                @for ($i = 0; $i < 5; $i++)
-                                                                    <i
-                                                                        class="bx bxs-star {{ $i < 4 ? 'text-white' : 'text-light-4' }}"></i>
-                                                                @endfor
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mt-auto">
-                                                            <div class="d-grid gap-2">
-                                                                <form action="{{ route('cart.add') }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="product_id"
-                                                                        value="{{ $product->id }}">
-                                                                    <input type="hidden" name="quantity" value="1">
-                                                                    <button type="submit"
-                                                                        class="btn btn-light btn-ecomm w-100">
-                                                                        <i class="bx bxs-cart-add"></i> Add to Cart
-                                                                    </button>
-                                                                </form>
-                                                                <!-- Quick View button -->
-                                                                <a href="javascript:;" class="btn btn-link btn-ecomm text-primary"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#QuickViewProduct-{{ $product->id }}">
-                                                                    <i class="bx bx-zoom-in"></i> Détails
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Quick View Modal -->
-                                                @include('layouts2.modals.detailsproduit')
-                                                <!-- End Quick View Modal -->
-                                            </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-
-                                <!-- Pagination -->
-                                <div class="mt-4 d-flex justify-content-center">
-                                    {{ $products->links('pagination::bootstrap-5') }}
-                                </div>
-
-                            </div>
+                    </ul>
+                    <p>Showing 1–{{ $products->count() }} of {{ $products->total() }} results</p>
+                </div>
+                <div class="shop-right">
+                    <div class="form-clt">
+                        <div class="nice-select" tabindex="0">
+                            <span class="current">Default sorting</span>
+                            <ul class="list">
+                                <li data-value="1" class="option selected focus">Default sorting</li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="openButton2">
+                        <div class="filter-button">
+                            <h6><a href="#"><span><img src="assets/img/filter.png" alt="img"></span>Filter</a></h6>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!--end shop area-->
+            <div class="tab-content">
+                <!-- Grid View -->
+                <div id="Course" class="tab-pane fade show active">
+                    <div class="row">
+                        @foreach($products as $product)
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="product-details-item">
+                                <div class="shop-image">
+                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                                    <ul class="shop-icon d-grid justify-content-center align-items-center">
+                                        <li>
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit" class="btn btn-link p-0"><i class="fa-regular fa-cart-shopping"></i></button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <button data-bs-toggle="modal" data-bs-target="#QuickViewProduct-{{ $product->id }}">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('wishlist.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <button type="submit" class="btn btn-link p-0"><i class="far fa-heart"></i></button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content">
+                                    <p>{{ $product->category->name ?? 'Uncategorized' }}</p>
+                                    <h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
+                                    <div class="star">
+                                        @for($i = 0; $i < 5; $i++)
+                                            <i class="fa-solid fa-star {{ $i < 4 ? '' : 'fa-regular' }}"></i>
+                                        @endfor
+                                    </div>
+                                    <h6>{{ number_format($product->price, 2, '.', ',') }} <del>{{ number_format($product->price + 50, 2, '.', ',') }}</del></h6>
+                                </div>
+                            </div>
 
+                            @include('layouts2.modals.detailsproduit', ['product' => $product])
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
 
+                <!-- List View -->
+                <div id="Curriculum" class="tab-pane fade">
+                    <div class="row justify-content-center">
+                        <div class="row g-4">
+                            @foreach($products as $product)
+                            <div class="col-xl-12">
+                                <div class="product-details-item style-2">
+                                    <div class="shop-image">
+                                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                                        <ul class="shop-icon d-grid justify-content-center align-items-center">
+                                            <li>
+                                                <form action="{{ route('cart.add') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <button type="submit" class="btn btn-link p-0"><i class="fa-regular fa-cart-shopping"></i></button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <button data-bs-toggle="modal" data-bs-target="#QuickViewProduct-{{ $product->id }}">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <form action="{{ route('wishlist.add') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit" class="btn btn-link p-0"><i class="far fa-heart"></i></button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="content">
+                                        <p>{{ $product->category->name ?? 'Uncategorized' }}</p>
+                                        <h3><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h3>
+                                        <div class="star">
+                                            @for($i = 0; $i < 5; $i++)
+                                                <i class="fa-solid fa-star {{ $i < 4 ? '' : 'fa-regular' }}"></i>
+                                            @endfor
+                                        </div>
+                                        <h6>{{ number_format($product->price, 2, '.', ',') }} <del>{{ number_format($product->price + 50, 2, '.', ',') }}</del></h6>
+                                        <p>{{ Str::limit($product->description ?? '', 100) }}</p>
+                                        <a href="{{ route('cart.add') }}" class="theme-btn">Add To Cart</a>
+                                    </div>
+                                </div>
+
+                                @include('layouts2.modals.detailsproduit', ['product' => $product])
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-nav-wrap">
+                {{ $products->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
+</section>
 
 @endsection

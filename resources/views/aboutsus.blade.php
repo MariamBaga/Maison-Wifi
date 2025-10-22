@@ -2,84 +2,97 @@
 @section('title', 'A propos de nous')
 @section('content')
 
-<div class="page-wrapper">
-    <div class="page-content">
-        @include('layouts2.breadcrumb', ['title' => 'A propos de nous'])
 
-        <!--start page content-->
-        <section class="py-0 py-lg-4">
+    
+
+        <!-- Our Journey & Mission -->
+        <section class="about-section section-padding fix">
             <div class="container">
-                <h4>Notre Histoire</h4>
-                <p>
-                    La Maison du Wifi est un espace dédié à la connectivité, à la technologie et au confort numérique.
-                    Nous accompagnons les foyers, entreprises et professionnels dans l’installation, l’optimisation
-                    et la maintenance de leurs réseaux internet.
-                </p>
+                <div class="about-wrapper-2">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="about-left-content">
+                                <h4>Notre Histoire</h4>
+                                <h3>Votre monde à portée de main</h3>
+                                <p>
+                                    La Maison du Wifi a commencé comme un petit projet avec une grande vision.
+                                    Notre objectif est de rendre la connexion fiable, rapide et accessible à tous.
+                                </p>
+                                <div class="content">
+                                    <h3>Notre Mission</h3>
+                                    <p>
+                                        Nous accompagnons les foyers et entreprises pour installer, optimiser et maintenir
+                                        leurs réseaux internet, en garantissant sécurité et performance.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                <p>
-                    Notre objectif est simple : rendre la connexion fiable, rapide et accessible à tous.
-                    Que ce soit pour la fibre optique, la domotique, la vidéosurveillance ou le matériel réseau,
-                    la Maison du Wifi est votre partenaire de confiance pour un environnement numérique fluide et sécurisé.
-                </p>
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="about-image">
+                                <img src="{{ asset('assets/images/about/about-01.jpg') }}" alt="Notre Histoire">
+                            </div>
+                        </div>
 
-                <p>
-                    Nous croyons que chaque maison, chaque entreprise, mérite une expérience internet stable et performante.
-                    Grâce à notre expertise et notre engagement, nous transformons la connectivité en un véritable atout
-                    pour votre quotidien et votre productivité.
-                </p>
-
-                <hr class="my-4">
-
-                <h4>Notre Mission</h4>
-                <p>
-                    Notre mission est d’améliorer la qualité de vie numérique des particuliers et des entreprises
-                    à travers des solutions innovantes et durables.
-                </p>
-
-                <p>Nous œuvrons chaque jour pour :</p>
-                <ul>
-                    <li>connecter les foyers à un internet plus performant ;</li>
-                    <li>simplifier l’accès aux équipements technologiques de qualité ;</li>
-                    <li>garantir la sécurité et la stabilité des réseaux ;</li>
-                    <li>offrir un service client réactif et personnalisé.</li>
-                </ul>
-
-                <p>
-                    À la Maison du Wifi, nous connectons bien plus que des appareils :
-                    <strong>nous connectons les gens à leurs ambitions.</strong>
-                </p>
+                        <div class="col-xl-4 col-lg-6 col-md-6">
+                            <div class="about-right">
+                                <h3>A propos de l'entreprise</h3>
+                                <p>
+                                    Grâce à notre expertise et engagement, nous transformons la connectivité en un véritable
+                                    atout pour votre quotidien et votre productivité.
+                                </p>
+                                <div class="info-text">
+                                    <h6>Co-fondateur</h6>
+                                    <img src="{{ asset('assets/images/about/signature.png') }}" alt="Signature Co-fondateur">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Video Section -->
+        <div class="video-bg-section fix">
+            <div class="container-fluid">
+                <div class="video-wrapper bg-cover" style="background-image: url('{{ asset('assets/images/about/video-bg.jpg') }}');">
+                    <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-btn video-popup">
+                        <i class="fa-duotone fa-play"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us -->
         <section class="py-4">
             <div class="container">
                 <h4>Pourquoi nous choisir?</h4>
                 <hr>
                 <div class="row row-cols-1 row-cols-lg-3">
                     <div class="col d-flex">
-                        <div class="card rounded-0 shadow-none w-100">
-                            <div class="card-body text-center">
+                        <div class="card rounded-0 shadow-none w-100 text-center">
+                            <div class="card-body">
                                 <img src="{{ asset('assets/images/icons/delivery.png') }}" width="60" alt="">
                                 <h5 class="my-3">Livraison Rapide</h5>
-                                <p class="mb-0">Profitez d’une expédition rapide et fiable pour tous vos produits technologiques.</p>
+                                <p>Profitez d’une expédition rapide et fiable pour tous vos produits technologiques.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col d-flex">
-                        <div class="card rounded-0 shadow-none w-100">
-                            <div class="card-body text-center">
+                        <div class="card rounded-0 shadow-none w-100 text-center">
+                            <div class="card-body">
                                 <img src="{{ asset('assets/images/icons/money-bag.png') }}" width="60" alt="">
                                 <h5 class="my-3">Garantie Satisfaction</h5>
-                                <p class="mb-0">Nous garantissons un service de qualité et un remboursement en cas d’insatisfaction.</p>
+                                <p>Nous garantissons un service de qualité et un remboursement en cas d’insatisfaction.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col d-flex">
-                        <div class="card rounded-0 shadow-none w-100">
-                            <div class="card-body text-center">
+                        <div class="card rounded-0 shadow-none w-100 text-center">
+                            <div class="card-body">
                                 <img src="{{ asset('assets/images/icons/support.png') }}" width="60" alt="">
                                 <h5 class="my-3">Support 24/7</h5>
-                                <p class="mb-0">Notre équipe est disponible à tout moment pour répondre à vos besoins.</p>
+                                <p>Notre équipe est disponible à tout moment pour répondre à vos besoins.</p>
                             </div>
                         </div>
                     </div>
@@ -87,26 +100,49 @@
             </div>
         </section>
 
-        <!-- <section class="py-4">
-            <div class="container">
-                <h4>Nos Marques Partenaires</h4>
-                <hr>
-                <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-xl-5">
-                    @foreach(range(1,15) as $i)
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="javascript:void(0);">
-                                        <img src="{{ asset('assets/images/brands/' . sprintf('%02d', $i) . '.png') }}" class="img-fluid" alt="Marque {{ $i }}">
-                                    </a>
+        <!-- Testimonial Section -->
+        <section class="testimonial-section fix">
+            <div class="testimonial-wrapper">
+                <div class="row g-0">
+                    <div class="col-xl-6">
+                        <div class="testimonial-image">
+                            <img src="{{ asset('assets/images/testimonial/01.jpg') }}" alt="Client satisfait">
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="testimonial-content">
+                            <h3>Ce que nos clients disent</h3>
+                            <p>Découvrez nos derniers retours clients sur nos services.</p>
+                            <div class="swiper testimonial-slider-2">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="info-content">
+                                            <h4>Nelson Richard</h4>
+                                            <span>Designer</span>
+                                            <p>Très satisfait de la connectivité et du support technique de la Maison du Wifi.</p>
+                                            <div class="star">
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star color"></i>
+                                            </div>
+                                            <div class="client-image">
+                                                <img src="{{ asset('assets/images/testimonial/client-1.png') }}" alt="">
+                                                <img src="{{ asset('assets/images/testimonial/client-2.png') }}" alt="">
+                                                <img src="{{ asset('assets/images/testimonial/client-3.png') }}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Autres slides similaires -->
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
             </div>
-        </section> -->
-        <!--end start page content-->
+        </section>
+
     </div>
 </div>
 

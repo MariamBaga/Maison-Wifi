@@ -40,23 +40,47 @@ class CartController extends Controller
     /**
      * Mettre à jour la quantité d'un produit
      */
-    public function update(Request $request)
-    {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1'
-        ]);
+ public function update(Request $request)
+{
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'quantity' => 'nullable|integer|min:1',
+        'action' => 'nullable|string|in:increment,decrement',
+    ]);
 
-        $cart = $this->getCart($request);
+    $cart = $this->getCart($request);
 
-        if ($cart && $cart->products()->where('product_id', $request->product_id)->exists()) {
-            $cart->products()->updateExistingPivot($request->product_id, [
-                'quantity' => $request->quantity
-            ]);
-        }
-
-        return back()->with('success', 'Quantité mise à jour.');
+    if (!$cart) {
+        return back()->with('error', 'Panier introuvable.');
     }
+
+    $product = $cart->products()->where('product_id', $request->product_id)->first();
+
+    if (!$product) {
+        return back()->with('error', 'Produit non trouvé dans le panier.');
+    }
+
+    $quantity = $product->pivot->quantity;
+
+    // ✅ Si le bouton + ou - est utilisé
+    if ($request->action === 'increment') {
+        $quantity++;
+    } elseif ($request->action === 'decrement') {
+        $quantity = max(1, $quantity - 1);
+    }
+    // ✅ Sinon, si l’utilisateur change la quantité manuellement
+    elseif ($request->has('quantity')) {
+        $quantity = max(1, (int) $request->quantity);
+    }
+
+    // ✅ Mise à jour dans la table pivot
+    $cart->products()->updateExistingPivot($request->product_id, [
+        'quantity' => $quantity,
+    ]);
+
+    return back()->with('success', 'Quantité mise à jour.');
+}
+
 
     /**
      * Retirer un produit du panier

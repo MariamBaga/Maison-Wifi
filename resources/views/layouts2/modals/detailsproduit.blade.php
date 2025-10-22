@@ -1,100 +1,111 @@
- <!-- ✅ MODAL PAR PRODUIT -->
- <div class="modal fade" id="QuickViewProduct-{{ $product->id }}">
-                                                <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
-                                                    <div class="modal-content bg-dark-4 rounded-0 border-0">
-                                                        <div class="modal-body">
-                                                            <button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
-                                                            <div class="row g-0">
-                                                                <div class="col-12 col-lg-6">
-                                                                    <div class="image-zoom-section">
-                                                                        <div class="product-gallery owl-carousel owl-theme border mb-3 p-3" data-slider-id="{{ $product->id }}">
-                                                                            @if($product->image)
-                                                                                <div class="item">
 
-                                                                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="{{ $product->name }}">
-                                                                                </div>
-                                                                            @endif
-                                                                            {{-- tu peux ajouter d’autres images ici --}}
-                                                                        </div>
-                                                                        <div class="owl-thumbs d-flex justify-content-center" data-slider-id="{{ $product->id }}">
-                                                                            @if($product->image)
-                                                                                <button class="owl-thumb-item">
-                                                                                <img src="{{ asset($product->image) }}" class="img-fluid" alt="{{ $product->name }}">
-                                                                                </button>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+   <!-- Modal Version 2 Dynamique -->
+<div class="modal modal-common-wrap fade" id="QuickViewProduct-{{ $product->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="shop-details-wrapper">
+                    <div class="row">
+                        <!-- Image -->
+                        <div class="col-lg-6">
+                            <div class="shop-details-image">
+                                <div class="tab-content">
+                                <div class="shop-thumb">
+    @if($product->image)
+        <img src="{{ asset($product->image) }}" class="img-fluid" alt="{{ $product->name }}">
+    @else
+        <img src="{{ asset('assets/img/shop/popup.jpg') }}" alt="img">
+    @endif
+</div>
 
-                                                                <div class="col-12 col-lg-6">
-                                                                    <div class="product-info-section p-3">
-                                                                        <h3 class="mt-3 mt-lg-0 mb-0">{{ $product->name }}</h3>
+                                </div>
+                            </div>
+                        </div>
 
-                                                                        <div class="product-rating d-flex align-items-center mt-2">
-                                                                            <div class="rates cursor-pointer font-13">
-                                                                                @for($i = 0; $i < 5; $i++)
-                                                                                    <i class="bx bxs-star {{ $i < 4 ? 'text-warning' : 'text-light-4' }}"></i>
-                                                                                @endfor
-                                                                            </div>
-                                                                            <div class="ms-1"><p class="mb-0">(24 Ratings)</p></div>
-                                                                        </div>
+                        <!-- Détails produit -->
+                        <div class="col-lg-6">
+                            <div class="product-details-content">
+                                <h3 class="pb-3">{{ $product->name }}</h3>
 
-                                                                        <div class="d-flex align-items-center mt-3 gap-2">
-                                                                            @if($product->price < 100)
-                                                                                <h5 class="mb-0 text-decoration-line-through text-light-3">
-                                                                                    {{ number_format($product->price + 50, 0, ',', ' ') }} FCFA
-                                                                                </h5>
-                                                                            @endif
-                                                                            <h4 class="mb-0">{{ number_format($product->price, 0, ',', ' ') }} FCFA</h4>
-                                                                        </div>
+                                <div class="star pb-3">
+                                    @for($i = 0; $i < 5; $i++)
+                                        <a href="#"><i class="fas fa-star {{ $i < $product->rating ? 'text-warning' : '' }}"></i></a>
+                                    @endfor
+                                    <span>({{ $product->reviews_count ?? 0 }} Customer Review)</span>
+                                </div>
 
-                                                                        <div class="mt-3">
-                                                                            <h6>Description :</h6>
-                                                                            <p class="mb-0">{{ $product->description }}</p>
-                                                                        </div>
+                                <p class="mb-3">{{ $product->description }}</p>
 
-                                                                        <dl class="row mt-3">
-                                                                            <dt class="col-sm-3">Catégorie</dt>
-                                                                            <dd class="col-sm-9">{{ $product->category->name ?? 'Uncategorized' }}</dd>
-                                                                            <dt class="col-sm-3">Stock</dt>
-                                                                            <dd class="col-sm-9">{{ $product->stock }}</dd>
-                                                                        </dl>
+                                <div class="price-list">
+                                    <h3>{{ number_format($product->price, 0, ',', ' ') }} FCFA</h3>
+                                </div>
 
-                                                                        <!-- ✅ Quantité et boutons -->
-                                                                        <div class="row row-cols-auto align-items-center mt-3">
-                                                                            <div class="col">
-                                                                                <label class="form-label">Quantity</label>
-                                                                                <select class="form-select form-select-sm">
-                                                                                    @for($q=1; $q<=5; $q++)
-                                                                                        <option>{{ $q }}</option>
-                                                                                    @endfor
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
+                                <div class="cart-wrp">
+                                    <div class="cart-quantity">
+                                        <form method="POST" action="{{ route('cart.add') }}" class="quantity">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="button" value="-" class="qtyminus minus">
+                                            <input type="text" name="quantity" value="1" class="qty">
+                                            <input type="button" value="+" class="qtyplus plus">
+                                        </form>
+                                    </div>
 
-                                                                        <div class="d-flex gap-2 mt-3">
-                                                                        <form action="{{ route('cart.add') }}" method="POST">
+                                    <a href="#" class="icon">
+                                        <form action="{{ route('wishlist.add') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <button type="submit" class="btn btn-link text-decoration-none p-0">
+                                                <i class="far fa-heart"></i>
+                                            </button>
+                                        </form>
+                                    </a>
+
+                                    <div class="social-profile">
+                                        <span class="plus-btn"><i class="far fa-share"></i></span>
+                                        <ul>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="shop-btn">
+    <form action="{{ route('cart.add') }}" method="POST" class="d-inline">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="btn btn-light btn-ecomm w-100">
-            <i class="bx bxs-cart-add"></i> Ajouter au panier
+        <button type="submit" class="theme-btn">
+            <span>Ajouter au panier</span>
         </button>
     </form>
-                                                                           <!-- 💖 Ajouter à la wishlist -->
-    <form action="{{ route('wishlist.add') }}" method="POST">
-        @csrf
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
-        <button type="submit" class="btn btn-link btn-ecomm text-primary w-100">
-            <i class="bx bx-heart"></i> Ajouter à la favoris
-        </button>
-    </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- ✅ FIN MODAL -->
+
+    <a href="{{ route('orders.index') }}" class="theme-btn">
+        <span>Commander maintenant</span>
+    </a>
+</div>
+
+
+                                <h6 class="details-info"><span>SKU:</span> <a href="#">{{ $product->sku ?? 'N/A' }}</a></h6>
+                                <h6 class="details-info"><span>Categories:</span> <a href="#">{{ $product->category->name ?? 'Uncategorized' }}</a></h6>
+                                <h6 class="details-info style-2"><span>Tags:</span>
+                                    @if($product->tags)
+                                        @foreach($product->tags as $tag)
+                                            <b>{{ $tag->name }}</b>
+                                        @endforeach
+                                    @endif
+                                </h6>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

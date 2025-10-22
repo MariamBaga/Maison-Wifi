@@ -15,11 +15,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 // routes/web.php ou routes/api.php
 use App\Http\Controllers\ContactController;
+use App\Models\Product;
 
 Route::get('/', function () {
-    return view('home1');
+    $products = Product::all(); // récupère tous les produits
+    return view('home1', compact('products'));
 });
-
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'role:admin'])->name('dashboard');
@@ -33,7 +34,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/home', function () {
-    return view('home1');
+    $products = Product::all(); // récupère tous les produits
+    return view('home1', compact('products'));
 })->name('home.index');
 
 Route::get('/aboutus', function () {
