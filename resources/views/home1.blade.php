@@ -2,238 +2,204 @@
 @section('title', 'home')
 
 @section('content')
-    <section class="hero-section hero-1 fix hero-bg">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show text-center mt-2" role="alert"
-                style="background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc;">
-                <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @include('layouts2.slide')
+
+    <section class="about-one" style="background-image: url({{ asset('assets/images/shapes/about-1-bg.png') }});">
+    <div class="about-one__shape" style="background-image: url({{ asset('assets/images/resources/about-shape-1.png') }});"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="about-one__image wow fadeInLeft" data-wow-delay="300ms">
+                    <div class="about-one__image__one">
+                        <img src="{{ asset('assets/images/resources/about-1-1.jpg') }}" alt="Maison Wifi">
+                    </div>
+                    <div class="about-one__image__bg"></div>
+                    <div class="about-one__image__border" style="background-image: url({{ asset('assets/images/shapes/about-1-border.png') }});"></div>
+                    <div class="about-one__image__two">
+                        <div class="about-one__image__two__inner">
+                            <img src="{{ asset('assets/images/resources/about-1-2.jpg') }}" alt="Maison Wifi">
+                        </div>
+                    </div>
+                </div>
             </div>
-        @endif
 
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show text-center mt-2" role="alert"
-                style="background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7;">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+            <div class="col-xl-6 wow fadeInRight" data-wow-delay="300ms">
+                <div class="about-one__content">
+                    <div class="sec-title text-left">
+                        <h6 class="sec-title__tagline bw-split-in-right">
+                            <span class="sec-title__tagline__left-border"></span>
+                            À propos de notre service Internet
+                            <span class="sec-title__tagline__right-border"></span>
+                        </h6>
 
-        <div class="arrow-button">
-            <button class="array-prev active">
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
-            <button class="array-next">
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </div>
+                        <h3 class="sec-title__title bw-split-in-left">
+                            Nous offrons un <span>réseau illimité</span> pour vous.
+                        </h3>
+                    </div>
 
-        <div class="container">
-            <div class="hero-items">
-                <!-- Contenu statique (texte) -->
-                <div class="hero-content">
-                    <h6>45% MEGA SALE OFFER</h6>
-                    <h1>Maison WiFi – Produits connectés</h1>
-                    <a href="contact.html" class="theme-btn">Discover Now</a>
-                    <p>
-                        Découvrez nos produits connectés pour la maison : prises intelligentes, rallonges, power banks et
-                        bien plus.
+                    <p class="about-one__content__text">
+                        Avec Maison WiFi, profitez d’une connexion rapide, stable et sans coupure.
+                        Nos solutions s’adaptent aussi bien aux particuliers qu’aux entreprises.
                     </p>
-                </div>
 
-                <!-- Slider des images produits -->
-                <div class="swiper hero-image-slider">
-                    <div class="swiper-wrapper">
-                        @foreach ($products as $product)
-                            <div class="swiper-slide">
-                                <div class="hero-image">
-                                    <img src="{{ asset($product->image ?? 'assets/img/hero/01.png') }}"
-                                        alt="{{ $product->name }}">
-                                </div>
-                                <div class="hero-caption">
+                    <ul class="about-one__content__list">
+                        <li><span class="fas fa-check"></span>Connexion ultra-rapide</li>
+                        <li><span class="fas fa-check"></span>Wi-Fi haut débit</li>
+                        <li><span class="fas fa-check"></span>Installation facile</li>
+                        <li><span class="fas fa-check"></span>Mises à jour 5G</li>
+                    </ul>
 
-                                    <a href="{{ route('products.show', $product->id) }}" class="theme-btn">Acheter
-                                        maintenant</a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <!-- Navigation Swiper -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-<!-- Feature-Section Start -->
-<section class="feature-section fix">
-    <div class="container">
-        <div class="feature-wrapper">
-            <div class="feature-item style-2 wow fadeInUp" data-wow-delay=".2s">
-                <div class="icon">
-                    <img src="{{ asset('assets/img/icon/01.svg') }}" alt="img">
-                </div>
-                <div class="content">
-                    <h6>Livraison Rapide</h6>
-                    <p>Expédition fiable et rapide pour tous vos produits connectés.</p>
-                </div>
-            </div>
-            <div class="feature-item wow fadeInUp" data-wow-delay=".4s">
-                <div class="icon">
-                    <img src="{{ asset('assets/img/icon/02.svg') }}" alt="img">
-                </div>
-                <div class="content">
-                    <h6>Garantie Satisfaction</h6>
-                    <p>Remboursement garanti en cas d’insatisfaction.</p>
-                </div>
-            </div>
-            <div class="feature-item wow fadeInUp" data-wow-delay=".6s">
-                <div class="icon">
-                    <img src="{{ asset('assets/img/icon/03.svg') }}" alt="img">
-                </div>
-                <div class="content">
-                    <h6>Support 24/7</h6>
-                    <p>Notre équipe est disponible à tout moment.</p>
-                </div>
-            </div>
-            <div class="feature-item wow fadeInUp" data-wow-delay=".8s">
-                <div class="icon">
-                    <img src="{{ asset('assets/img/icon/04.svg') }}" alt="img">
-                </div>
-                <div class="content">
-                    <h6>Service Fiable</h6>
-                    <p>Des experts pour vos besoins en connectivité.</p>
+                    <a href="{{ route('aboutus') }}" class="ienet-btn">
+                        <span>En savoir plus
+                            <span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Offer-Section Start -->
-<section class="offer-section section-padding pt-0 fix">
-    <div class="container">
-        <div class="offer-wrapper">
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="offer-card-item wow fadeInUp" data-wow-delay=".3s">
-                        <div class="content">
-                            <p>Jusqu’à 20% de réduction</p>
-                            <h3><a href="#">Équipements Réseaux Domestiques</a></h3>
-                            <a href="#" class="theme-btn">Découvrir <i class="fa-regular fa-arrow-right"></i></a>
-                        </div>
-                        <div class="offer-image">
-                        <img src="{{ asset('assets/img/Router.jpeg') }}" alt="img" style="width: 151px; height: 176px; object-fit: cover; border-radius: 8px;">
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 wow fadeInUp" data-wow-delay=".5s">
-                            <div class="offer-box">
-                                <div class="content">
-                                    <span>Populaire</span>
-                                    <h3><a href="#">Routeurs & Modems</a></h3>
-                                </div>
-                                <div class="offer-image">
-                                <img src="{{ asset('assets/img/Router.jpeg') }}" alt="img" style="width: 126px; height: 170px; object-fit: cover; border-radius: 8px;">
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 wow fadeInUp" data-wow-delay=".7s">
-                            <div class="offer-box style-2">
-                                <div class="content">
-                                    <span>Nouveautés</span>
-                                    <h3><a href="#">Solutions Domotiques</a></h3>
-                                </div>
-                                <div class="offer-image">
-                                <img src="{{ asset('assets/img/Router.jpeg') }}" alt="img" style="width: 167px; height: 170px; object-fit: cover; border-radius: 8px;">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+<section class="packages-one">
+    <div class="packages-one__bg jarallax"
+         data-jarallax
+         data-speed="0.3"
+         data-imgPosition="50% -100%"
+         style="background-image: url({{ asset('assets/images/backgrounds/price-bg-1.jpg') }});"></div>
+
+    <div class="container tabs-box">
+
+        {{-- EN-TÊTE DES SERVICES --}}
+        <ul class="packages-one__wrapper">
+            <li class="packages-one__item">
+                <div class="packages-one__item__icon"><i class="icon-home"></i></div>
+                <h3 class="packages-one__item__title">Internet Maison</h3>
+                <ul class="packages-one__item__list">
+                    <li><span class="fas fa-check"></span>Connexion dédiée</li>
+                    <li><span class="fas fa-check"></span>Support 24/7</li>
+                    <li><span class="fas fa-check"></span>Débit flexible</li>
+                    <li><span class="fas fa-check"></span>Installation rapide</li>
+                </ul>
+            </li>
+
+            <li class="packages-one__item">
+                <div class="packages-one__item__icon"><i class="icon-corporation"></i></div>
+                <h3 class="packages-one__item__title">Internet Entreprise</h3>
+                <ul class="packages-one__item__list">
+                    <li><span class="fas fa-check"></span>Réseau fiable</li>
+                    <li><span class="fas fa-check"></span>Assistance premium</li>
+                    <li><span class="fas fa-check"></span>Connexion évolutive</li>
+                    <li><span class="fas fa-check"></span>Haute disponibilité</li>
+                </ul>
+            </li>
+
+            <li class="packages-one__item">
+                <div class="packages-one__item__icon"><i class="icon-data-analytics"></i></div>
+                <h3 class="packages-one__item__title">Connectivité de Données</h3>
+                <ul class="packages-one__item__list">
+                    <li><span class="fas fa-check"></span>Haute performance</li>
+                    <li><span class="fas fa-check"></span>Support constant</li>
+                    <li><span class="fas fa-check"></span>Évolutif</li>
+                    <li><span class="fas fa-check"></span>Sécurisé</li>
+                </ul>
+            </li>
+        </ul>
+
+        {{-- Titre --}}
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="sec-title text-left">
+                    <h6 class="sec-title__tagline bw-split-in-right">
+                        <span class="sec-title__tagline__left-border"></span>
+                        Nos Meilleurs Forfaits
+                        <span class="sec-title__tagline__right-border"></span>
+                    </h6>
+                    <h3 class="sec-title__title bw-split-in-left">Choisissez votre <span>meilleur plan</span></h3>
                 </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="offer-bg-box bg-cover" style="background-image: url({{ asset('assets/img/accessoire.jpeg') }});">
-                        <div class="content">
-                            <p>Collection Spéciale</p>
-                            <h3><a href="#">Accessoires et câbles réseau</a></h3>
-                            <a href="#" class="theme-btn">Explorer <i class="fa-regular fa-arrow-right"></i></a>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="#" class="ienet-btn">
+                    <span>Voir tous les services
+                        <span class="ienet-btn__icon"><i class="fas fa-chevron-right"></i></span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        {{-- Onglets forfaits --}}
+        <ul class="packages-one__list tab-buttons list-unstyled">
+            <li data-tab="#10mbps" class="tab-btn">10 MBPS</li>
+            <li data-tab="#20mbps" class="tab-btn active-btn">20 MBPS</li>
+            <li data-tab="#30mbps" class="tab-btn">30 MBPS</li>
+            <li data-tab="#50mbps" class="tab-btn">50 MBPS</li>
+        </ul>
+
+        {{-- Contenu d’un onglet exemple --}}
+        <div class="tabs-content">
+            <div class="tab active-tab fadeInUp animated" id="20mbps">
+                <div class="row gutter-y-30">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="packages-one__card">
+                            <div class="packages-one__card__price">9 000 F / <span>mois</span></div>
+                            <h3 class="packages-one__card__title">Pack Essentiel</h3>
+                            <ul class="packages-one__card__list">
+                                <li><span class="fas fa-check"></span>Illimité 24h/24</li>
+                                <li><span class="fas fa-check"></span>WiFi inclus</li>
+                                <li><span class="fas fa-check"></span>Installation gratuite</li>
+                                <li><span class="fas fa-check"></span>Fibre optique</li>
+                            </ul>
+                            <a class="packages-one__card__rm" href="{{ route('contact.form') }}"><i class="icon-right-chevron"></i></a>
+                            <div class="packages-one__card__image">
+                                <img src="{{ asset('assets/images/resources/package-1-1.jpg') }}" alt="Maison Wifi">
+                            </div>
                         </div>
                     </div>
+                    {{-- Dupliquer pour d’autres forfaits --}}
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About-Section Start -->
-<section class="about-section section-padding fix pt-0">
+
+
+
+
+
+<section class="feature-one">
     <div class="container">
-        <div class="about-wrapper">
-            <div class="row g-4">
-                <div class="col-lg-6">
-                    <div class="about-image">
-                        <img src="{{ asset('assets/img/about/01.jpg') }}" alt="img" class="wow fadeInUp" data-wow-delay=".3s">
-                        <div class="about-image-2">
-                            <img src="{{ asset('assets/img/about/02.jpg') }}" alt="img" class="wow fadeInUp" data-wow-delay=".5s">
-                        </div>
-                    </div>
+        <div class="sec-title text-center">
+            <h6 class="sec-title__tagline bw-split-in-right">
+                <span class="sec-title__tagline__left-border"></span>Nos Atouts<span class="sec-title__tagline__right-border"></span>
+            </h6>
+            <h3 class="sec-title__title bw-split-in-left">Nos <span>Fonctionnalités Spéciales</span></h3>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 wow fadeInLeft" data-wow-delay="00ms">
+                <div class="feature-one__box"><div class="feature-one__box__icon"><i class="icon-dashboard"></i></div><h5>Connexion Ultra-Rapide</h5></div>
+                <div class="feature-one__box"><div class="feature-one__box__icon"><i class="icon-tv"></i></div><h5>250+ Chaînes TV</h5></div>
+                <div class="feature-one__box"><div class="feature-one__box__icon"><i class="icon-planning"></i></div><h5>Formules Flexibles</h5></div>
+            </div>
+
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                <div class="feature-one__image">
+                    <img src="{{ asset('assets/images/resources/feature-1-1.jpg') }}" alt="Maison Wifi">
                 </div>
-                <div class="col-lg-6">
-                    <div class="about-content">
-                        <div class="section-title style-2">
-                            <h6 class="sub-title wow fadeInUp">Notre Histoire</h6>
-                            <h2 class="wow fadeInUp" data-wow-delay=".3s">La Maison du Wifi — Connecter, Simplifier, Innover</h2>
-                        </div>
-                        <div class="text">
-                            <p class="wow fadeInUp" data-wow-delay=".5s">
-                                La Maison du Wifi est un espace dédié à la connectivité et au confort numérique.
-                                Nous accompagnons particuliers et entreprises dans l’installation, la maintenance et
-                                l’optimisation de leurs réseaux internet, fibre, et solutions domotiques.
-                            </p>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">
-                                Notre mission est d’améliorer la vie numérique grâce à des solutions fiables,
-                                accessibles et durables. Nous croyons que chaque foyer mérite une expérience
-                                internet fluide et performante.
-                            </p>
-                            <a href="{{ route('contacts.index') }}" class="theme-btn wow fadeInUp" data-wow-delay=".8s">
-                                Contactez-nous <i class="fa-regular fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+
+            <div class="col-lg-4 wow fadeInRight" data-wow-delay="00ms">
+                <div class="feature-one__box"><div class="feature-one__box__icon"><i class="icon-wifi-router"></i></div><h5>Installation Gratuite</h5></div>
+                <div class="feature-one__box"><div class="feature-one__box__icon"><i class="icon-support"></i></div><h5>Support 24/7</h5></div>
+                <div class="feature-one__box"><div class="feature-one__box__icon"><i class="icon-4k"></i></div><h5>Qualité 4K / 8K</h5></div>
             </div>
         </div>
     </div>
 </section>
-@endsection
 
-@section('scripts')
-    <script>
-        setTimeout(() => {
-            const alert = document.querySelector('.alert');
-            if (alert) {
-                alert.classList.remove('show');
-                setTimeout(() => alert.remove(), 500);
-            }
-        }, 4000);
 
-        // Flèches array-prev / array-next pour piloter Swiper
-        const swiper = new Swiper('.hero-image-slider', {
-            loop: true,
-            navigation: {
-                nextEl: '.array-next',
-                prevEl: '.array-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    </script>
 @endsection

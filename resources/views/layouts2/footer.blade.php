@@ -1,4 +1,3 @@
-<!-- footer-section Start -->
 <footer class="footer-section footer-bg fix">
     <div class="container">
         <div class="footer-widget-wrapper">
@@ -8,7 +7,7 @@
                     <div class="single-footer-widget">
                         <div class="widget-head">
                             <a href="{{ route('home.index') }}" class="footer-logo">
-                                <!-- <img src="{{ asset('assets/images/logo-icon.png') }}" alt="Maison Wifi Logo"> -->
+                                <img src="{{ asset('assets/images/logo-light.png') }}" height="80" alt="Maison WIFI">
                             </a>
                         </div>
                         <div class="footer-content">

@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function index() {
-        return Contact::all(); // voir tous les messages (admin)
+        $contacts = Contact::orderBy('created_at', 'desc')->get();
+        return view('admin.contacts.index', compact('contacts'));
     }
+
 
     public function store(Request $request) {
         $contact = Contact::create($request->all());

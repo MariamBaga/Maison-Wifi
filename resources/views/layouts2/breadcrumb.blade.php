@@ -1,19 +1,11 @@
-<section class="py-3 border-bottom d-none d-md-flex">
+<section class="page-header">
+    <div class="page-header__bg"></div>
+    <div class="page-header__layer"></div>
     <div class="container">
-        <div class="page-breadcrumb d-flex align-items-center">
-            <h3 class="breadcrumb-title pe-3">{{ $title ?? 'Page Title' }}</h3>
-            <div class="ms-auto">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url('/') }}"><i class="bx bx-home-alt"></i> Home</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $title ?? 'Page Title' }}</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+        <h2 class="page-header__title bw-split-in-left">{{ $title ?? 'Contactez-nous' }}</h2>
+        <ul class="ienet-breadcrumb list-unstyled">
+            <li><a href="{{ url('/') }}">Accueil</a></li>
+            <li><span>Contact</span></li>
+        </ul>
     </div>
 </section>
-

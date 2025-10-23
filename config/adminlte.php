@@ -390,12 +390,12 @@ return [
         //     ],
         // ],
 
-        // ['header' => 'MESSAGERIE'],
-        // [
-        //     'text' => 'Messages reçus',
-        //     'icon' => 'fas fa-envelope',
-        //     'route' => 'contacts.index',
-        // ],
+        ['header' => 'MESSAGERIE'],
+        [
+            'text' => 'Messages reçus',
+            'icon' => 'fas fa-envelope',
+            'route' => 'contacts.index',
+        ],
 
         ['header' => 'PAGES PUBLIQUES'],
         [

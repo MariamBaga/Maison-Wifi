@@ -1,30 +1,31 @@
-<!--<< All JS Plugins >>-->
-<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+<!-- Vendor JS -->
+<script src="{{ asset('assets/vendors/jquery/jquery-3.7.0.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/bootstrap-select/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jarallax/jarallax.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-ui/jquery-ui.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-appear/jquery.appear.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-validate/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/nouislider/nouislider.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/tiny-slider/tiny-slider.js') }}"></script>
+<script src="{{ asset('assets/vendors/wnumb/wNumb.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/wow/wow.js') }}"></script>
+<script src="{{ asset('assets/vendors/imagesloaded/imagesloaded.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/isotope/isotope.js') }}"></script>
+<script src="{{ asset('assets/vendors/slick/slick.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/countdown/countdown.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-circleType/jquery.circleType.js') }}"></script>
+<script src="{{ asset('assets/vendors/jquery-lettering/jquery.lettering.min.js') }}"></script>
 
-<!--<< Viewport Js >>-->
-<script src="{{ asset('assets/js/viewport.jquery.js') }}"></script>
+<!-- GSAP -->
+<script src="{{ asset('assets/vendors/gsap/gsap.js') }}"></script>
+<script src="{{ asset('assets/vendors/gsap/scrolltrigger.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/gsap/splittext.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/gsap/ienet-split.js') }}"></script>
 
-<!--<< Bootstrap Js >>-->
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
-
-<!--<< Waypoints Js >>-->
-<script src="{{ asset('assets/js/jquery.waypoints.js') }}"></script>
-
-<!--<< Counterup Js >>-->
-<script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
-
-<!--<< Swiper Slider Js >>-->
-<script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
-
-<!--<< MeanMenu Js >>-->
-<script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
-
-<!--<< Magnific Popup Js >>-->
-<script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-
-<!--<< Wow Animation Js >>-->
-<script src="{{ asset('assets/js/wow.min.js') }}"></script>
-
-<!--<< Main.js >>-->
-<script src="{{ asset('assets/js/main.js') }}"></script>
+<!-- Template JS -->
+<script src="{{ asset('assets/js/ienet.js') }}"></script>
