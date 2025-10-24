@@ -31,10 +31,22 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
-        // Commandes par mois pour graphique
-        $ordersByMonth = Order::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
-            ->groupBy('month')
-            ->pluck('total', 'month');
+        // Commandes par mois (compatible tous moteurs SQL)
+        $ordersByMonth = Order::all()
+            ->groupBy(function($order) {
+                // Retourne le mois en entier (1 à 12)
+                return Carbon::parse($order->created_at)->format('m');
+            })
+            ->map(function($orders) {
+                return $orders->count();
+            })
+            ->sortKeys();
+
+        // Pour les labels du graphique (Janvier, Février…)
+        $monthNames = collect($ordersByMonth->keys())
+            ->map(function($month) {
+                return Carbon::create()->month($month)->format('F'); // Nom du mois en anglais
+            });
 
         return view('admin.dashboard', compact(
             'totalProducts',
@@ -45,7 +57,8 @@ class AdminController extends Controller
             'totalRevenue',
             'recentOrders',
             'topProducts',
-            'ordersByMonth'
+            'ordersByMonth',
+            'monthNames'
         ));
     }
 }

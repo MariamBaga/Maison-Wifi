@@ -145,32 +145,33 @@
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const ctx = document.getElementById('ordersChart');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: {!! json_encode(array_keys($ordersByMonth->toArray())) !!},
-            datasets: [{
-                label: 'Commandes par mois',
-                data: {!! json_encode(array_values($ordersByMonth->toArray())) !!},
-                borderWidth: 3,
-                borderColor: '#007bff',
-                backgroundColor: 'rgba(0,123,255,0.1)',
-                tension: 0.3,
-                fill: true,
-                pointRadius: 4,
-                pointHoverRadius: 6
-            }]
+   const ctx = document.getElementById('ordersChart');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {!! json_encode($monthNames) !!}, // noms des mois
+        datasets: [{
+            label: 'Commandes par mois',
+            data: {!! json_encode(array_values($ordersByMonth->toArray())) !!},
+            borderWidth: 3,
+            borderColor: '#007bff',
+            backgroundColor: 'rgba(0,123,255,0.1)',
+            tension: 0.3,
+            fill: true,
+            pointRadius: 4,
+            pointHoverRadius: 6
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
         },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-            },
-            scales: {
-                y: { beginAtZero: true }
-            }
+        scales: {
+            y: { beginAtZero: true }
         }
-    });
+    }
+});
+
 </script>
 @stop
