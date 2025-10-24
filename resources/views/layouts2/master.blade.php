@@ -50,9 +50,18 @@
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Alternative Preloader (Image) ===== -->
-    <div class="preloader">
-        <div class="preloader__image" style="background-image: url('{{ asset('assets/images/loader.png') }}');"></div>
+    <div class="preloader"
+     style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #0365FF; z-index: 9999;">
+    <div class="preloader__image"
+         style="background-image: url('{{ asset('assets/images/loader.png') }}');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 180px;
+                height: 180px;">
     </div>
+</div>
+
 
     <!-- ===== Page Wrapper ===== -->
     <div class="page-wrapper">
@@ -63,7 +72,7 @@
         {{-- Header --}}
         @include('layouts2.header')
 
-       
+
 
         {{-- Contenu principal --}}
         <main>
@@ -76,6 +85,8 @@
     </div>
     <!-- ===== End Page Wrapper ===== -->
 
+    {{-- Mobile Navigation --}}
+    @include('layouts2.mobilenavigation')
     {{-- Scripts JS --}}
     @include('layouts2.scripts')
 

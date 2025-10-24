@@ -12,9 +12,12 @@
             <div class="col-xl-6">
                 <div class="about-two__image wow fadeInLeft" data-wow-delay="200ms">
                     <div class="about-two__image__one">
-                        <img src="{{ asset('assets/img/about/03.jpg') }}" alt="Notre Histoire">
+                        <img src="{{ asset('assets/images/resources/about-2-1.jpg') }}" alt="Notre Histoire">
                     </div>
                     <div class="about-two__image__border" style="background-image: url('{{ asset('assets/images/shapes/about-2-border.png') }}');"></div>
+                    <div class="about-two__image__two">
+                                <img src="{{ asset('assets/images/resources/about-2-2.jpg') }}" alt="ienet">
+                            </div>
                     <div class="about-two__image__experiance">
                         <div class="about-two__image__experiance__icon"><i class="icon-medal"></i></div>
                         <h5 class="about-two__image__experiance__number count-box"><span class="count-text" data-stop="25" data-speed="1500"></span> Ans</h5>

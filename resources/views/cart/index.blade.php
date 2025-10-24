@@ -1,6 +1,4 @@
-@extends('layouts2.master')
-@section('title', 'Mon Panier')
-@section('content')
+
 
 
 <!-- Page Header -->
@@ -106,4 +104,4 @@
 @endsection
 
 
-@endsection
+
