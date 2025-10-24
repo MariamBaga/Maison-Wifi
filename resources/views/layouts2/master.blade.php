@@ -7,6 +7,9 @@
     <title>@yield('title', 'Maison Wifi')</title>
 
     {{-- Liens CSS --}}
+ @include('layouts2.styleloader')
+    {{-- Favicon --}}
+
     @include('layouts2.links')
 </head>
 
@@ -17,7 +20,7 @@
     <div class="custom-cursor__cursor-two"></div>
 
     <!-- ===== Preloader Start ===== -->
-    <!--
+
     <div id="preloader" class="preloader">
         <div class="animation-preloader">
             <div class="spinner"></div>
@@ -39,18 +42,26 @@
 
         <div class="loader">
             <div class="row">
-                <div class="col-3 loader-section section-left"><div class="bg"></div></div>
-                <div class="col-3 loader-section section-left"><div class="bg"></div></div>
-                <div class="col-3 loader-section section-right"><div class="bg"></div></div>
-                <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-left">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
+                <div class="col-3 loader-section section-right">
+                    <div class="bg"></div>
+                </div>
             </div>
         </div>
     </div>
-    -->
+
     <!-- ===== Preloader End ===== -->
 
     <!-- ===== Alternative Preloader (Image) ===== -->
-    <div class="preloader"
+    <!-- <div class="preloader"
      style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #0365FF; z-index: 9999;">
     <div class="preloader__image"
          style="background-image: url('{{ asset('assets/images/loader.png') }}');
@@ -60,7 +71,7 @@
                 width: 180px;
                 height: 180px;">
     </div>
-</div>
+</div> -->
 
 
     <!-- ===== Page Wrapper ===== -->
@@ -88,7 +99,15 @@
     {{-- Mobile Navigation --}}
     @include('layouts2.mobilenavigation')
     {{-- Scripts JS --}}
+
+    <script>
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').style.display = 'none';
+        });
+    </script>
+
     @include('layouts2.scripts')
 
 </body>
+
 </html>
