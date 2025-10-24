@@ -5,7 +5,7 @@
 <link rel="manifest" href="{{ asset('assets/images/favicons/site.webmanifest') }}" />
 
 <!-- Meta Description -->
-<meta name="description" content="Ienet is a multipurpose & unique HTML5 template. We especially designed for broadband internet services, satellite TV, Broadband, Online TV, Cable Television, Online Cinema and Movies, Voip, Wifi, Internet and TV store, Digital TV, Computer Networks, IPTV, Telecom company, CCTV and alternative Security, Networking Solution technology and all other internet businesses and websites." />
+<meta name="description" content="Maison WIFI est une entreprise spécialisée dans la vente, l’installation et la configuration d’équipements réseau pour les particuliers et les entreprises. Nous proposons des solutions complètes pour améliorer la connectivité Internet, la couverture Wi-Fi et la performance de vos réseaux domestiques ou professionnels." />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com/">
