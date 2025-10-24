@@ -16,14 +16,17 @@ use App\Http\Controllers\PostController;
 // routes/web.php ou routes/api.php
 use App\Http\Controllers\ContactController;
 use App\Models\Product;
-
+use App\Http\Controllers\AdminController;
 Route::get('/', function () {
     $products = Product::all(); // récupère tous les produits
     return view('home1', compact('products'));
 });
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'role:admin'])->name('dashboard');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+});
+
 
 
 
@@ -54,7 +57,11 @@ Route::get('/contactus', function () {
 
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{id}', [ProductController::class, 'adminshow'])->name('admin.products.show');
+
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
 // Partie admin
 Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');

@@ -24,7 +24,12 @@ class ProductController extends Controller
 
 
     // Affiche un produit spécifique
-    public function show($id)
+    public function adminshow($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('admin.products.show', compact('product'));
+    }
+ public function show($id)
     {
         $product = Product::findOrFail($id);
         return view('products.show', compact('product'));
@@ -60,7 +65,7 @@ public function store(Request $request)
         $validated['image'] = 'articles/' . $filename;
     }
 
-   
+
 
 
     Product::create($validated);

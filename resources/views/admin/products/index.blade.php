@@ -49,7 +49,7 @@
                             <td>{{ number_format($product->price, 0, ',', ' ') }} FCFA</td>
                             <td>{{ $product->stock }}</td>
                             <td>
-                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-success">
+                                <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-sm btn-success">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info">
