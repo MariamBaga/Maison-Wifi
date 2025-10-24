@@ -17,11 +17,11 @@ if (request()->routeIs($innerRoutes)) {
             <ul class="list-unstyled topbar-one__info">
                 <li class="topbar-one__info__item">
                     <span class="topbar-one__info__icon"><i class="icon-mail"></i></span>
-                    <a href="mailto:info@ienetmail.com">info@ienetmail.com</a>
+                    <a href="mailto:info@ienetmail.com">info@connectiixmail.com</a>
                 </li>
                 <li class="topbar-one__info__item">
                     <span class="topbar-one__info__icon"><i class="icon-maps-and-flags"></i></span>
-                    1211 Madison Ave, New York, NY
+                    Côte d’Ivoire, Abidjan, Abatta
                 </li>
             </ul>
             <div class="topbar-one__right">
