@@ -15,7 +15,7 @@
     <div class="card card-primary card-outline shadow-sm">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">Liste des produits</h3>
-            <a href="{{ route('products.create') }}" class="btn btn-primary">
+            <a href="{{ route('admin.products.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Ajouter un produit
             </a>
         </div>
@@ -52,10 +52,10 @@
                                 <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-sm btn-success">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info">
+                                <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-info">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ce produit ?')">

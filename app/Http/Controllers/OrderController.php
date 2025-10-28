@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Order;
@@ -8,10 +7,30 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    // Afficher toutes les commandes du client
+    // ============================
+    // 🧍 CÔTÉ CLIENT
+    // ============================
+
+    // 🧾 Lister les commandes du client connecté
     public function index(Request $request)
     {
-        // Récupérer le panier pour finalisation de commande
+        $user = $request->user();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Veuillez vous connecter pour voir vos commandes.');
+        }
+
+        $orders = Order::where('user_id', $user->id)
+            ->with('products')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('orders.index', compact('orders'));
+    }
+
+    public function checkoutindex(Request $request)
+    {
+     // Récupérer le panier pour finalisation de commande
         $cart = $request->user()
             ? Cart::where('user_id', $request->user()->id)->with('products')->first()
             : Cart::where('session_id', $request->session()->getId())->with('products')->first();
@@ -28,73 +47,117 @@ class OrderController extends Controller
                             ->get();
         }
 
-        return view('orders.index', compact('cart', 'orders'));
+        return view('checkout.details', compact('cart', 'orders'));
     }
 
-    // Afficher le détail d’une commande
-    public function show($id)
+
+
+    // 🔍 Voir les détails d’une commande
+    public function show($id, Request $request)
     {
         $order = Order::with('products')->findOrFail($id);
+
+        // Vérifie que l'utilisateur a accès à sa commande
+        if ($request->user() && $order->user_id !== $request->user()->id) {
+            abort(403, 'Accès non autorisé à cette commande.');
+        }
+
         return view('orders.show', compact('order'));
     }
 
-    // Créer une nouvelle commande depuis le panier
+    // 🛒 Créer une nouvelle commande
     public function store(Request $request)
     {
-        // Récupérer le panier
-        $cart = $request->user()
-            ? Cart::where('user_id', $request->user()->id)->with('products')->first()
+        $user = $request->user();
+
+        // Récupère le panier actif
+        $cart = $user
+            ? Cart::where('user_id', $user->id)->with('products')->first()
             : Cart::where('session_id', $request->session()->getId())->with('products')->first();
 
         if (!$cart || $cart->products->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Votre panier est vide.');
         }
 
-        $total = $cart->products->sum(fn($product) => $product->price * $product->pivot->quantity);
+        $total = $cart->products->sum(fn($p) => $p->price * $p->pivot->quantity);
 
-        // Créer la commande
+        // Crée la commande
         $order = Order::create([
-            'user_id' => $request->user()->id ?? null, // null si invité
-            'total' => $total,
-            'status' => 'pending',
-            'payment_method' => $request->payment_method,
-            'phone' => $request->user() ? $request->phone : $request->guest_phone,
-            'address' => $request->user() ? $request->address : $request->guest_address,
+            'user_id'        => $user->id ?? null,
+            'guest_name'     => $request->guest_name,
+            'guest_email'    => $request->guest_email,
+            'guest_phone'    => $request->guest_phone,
+            'guest_address'  => $request->guest_address,
+            'total'          => $total,
+            'status'         => 'pending',
+            'payment_method' => $request->payment_method ?? 'cash_on_delivery',
         ]);
 
-        // Si invité, enregistrer nom et email
-        if (!$request->user()) {
-            $order->guest_name = $request->guest_name;
-            $order->guest_email = $request->guest_email;
-            $order->guest_phone = $request->guest_phone;
-            $order->guest_address = $request->guest_address;
-            $order->save();
-        }
-
-        // Ajouter les produits à la commande
+        // Associe les produits
         foreach ($cart->products as $product) {
             $order->products()->attach($product->id, [
                 'quantity' => $product->pivot->quantity,
-                'price' => $product->price
+                'price' => $product->price,
             ]);
         }
 
-        // Vider le panier
+        // Vide le panier
         $cart->products()->detach();
 
-        return redirect()->route('home.index')->with('success', 'Commande passée avec succès.');
+        return redirect()->route('orders.index')->with('success', 'Votre commande a été enregistrée avec succès !');
     }
 
-    // Annuler une commande
-    public function cancel($id)
+    // ❌ Annuler une commande
+    public function cancel($id, Request $request)
     {
         $order = Order::findOrFail($id);
 
-        if ($order->status === 'pending') {
-            $order->update(['status' => 'cancelled']);
-            return redirect()->route('orders.index')->with('success', 'Commande annulée.');
+        if ($order->user_id !== $request->user()->id) {
+            abort(403, 'Vous ne pouvez pas annuler cette commande.');
         }
 
-        return redirect()->route('orders.index')->with('error', 'Impossible d’annuler cette commande.');
+        if ($order->status !== 'pending') {
+            return back()->with('error', 'Cette commande ne peut plus être annulée.');
+        }
+
+        $order->update(['status' => 'cancelled']);
+        return back()->with('success', 'Commande annulée avec succès.');
+    }
+
+    // ============================
+    // 🧑‍💼 CÔTÉ ADMIN
+    // ============================
+
+    // 📋 Liste des commandes
+    public function adminIndex()
+    {
+        $orders = Order::with('user')->latest()->paginate(10);
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    // ✏️ Modifier le statut
+    public function updateStatus(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+
+        $request->validate([
+            'status' => 'required|in:pending,confirmed,delivered,cancelled',
+        ]);
+
+        $order->update(['status' => $request->status]);
+
+        return back()->with('success', 'Statut mis à jour avec succès.');
+    }
+
+    // 🗑️ Supprimer une commande
+    public function destroy($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return back()->with('success', 'Commande supprimée.');
     }
 }
+
+
+

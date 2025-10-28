@@ -60,10 +60,10 @@
                     </a>
                     @role('admin')
                     <div>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info">
+                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info">
                             <i class="fas fa-edit"></i> Modifier
                         </a>
-                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" onclick="return confirm('Supprimer ce produit ?')">

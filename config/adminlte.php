@@ -333,7 +333,7 @@ return [
                 ],
                 [
                     'text' => 'Ajouter un produit',
-                    'route' => 'products.create',
+                    'route' => 'admin.products.create',
                     'icon' => 'fas fa-plus',
                 ],
             ],

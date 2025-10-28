@@ -20,7 +20,8 @@ class AdminController extends Controller
         $totalUsers = User::count();
 
         // Revenus totaux
-        $totalRevenue = Order::where('status', 'completed')->sum('total');
+        $totalRevenue = Order::whereIn('status', ['confirmed', 'delivered'])->sum('total');
+
 
         // Commandes récentes
         $recentOrders = Order::with('products')->latest()->take(5)->get();

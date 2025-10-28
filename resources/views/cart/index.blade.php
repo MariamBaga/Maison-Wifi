@@ -86,7 +86,7 @@
                 <li><span>Total</span><span class="cart-page__cart-total__list__amount">{{ number_format($total, 0, ',', ' ') }} FCFA</span></li>
             </ul>
             <div class="cart-page__cart-total__buttons mt-3">
-                <a href="{{ route('orders.index') }}" class="ienet-btn"><span>Passer la commande</span></a>
+                <a href="{{ route('checkout.index') }}" class="ienet-btn"><span>Passer la commande</span></a>
             </div>
         </div>
 

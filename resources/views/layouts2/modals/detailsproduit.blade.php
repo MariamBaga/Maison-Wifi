@@ -85,7 +85,7 @@
         </button>
     </form>
 
-    <a href="{{ route('orders.index') }}" class="theme-btn">
+    <a href="{{ route('checkout.index') }}" class="theme-btn">
         <span>Commander maintenant</span>
     </a>
 </div>

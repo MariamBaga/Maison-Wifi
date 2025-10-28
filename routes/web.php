@@ -55,24 +55,26 @@ Route::get('/contactus', function () {
 
 // Liste de tous les produits
 
-
+// --- ROUTES PUBLIQUES ---
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{id}', [ProductController::class, 'adminshow'])->name('admin.products.show');
-
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
+// --- ROUTES ADMIN ---
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
+    // Liste des produits admin
+    Route::get('/products', [ProductController::class, 'adminIndex'])->name('products.index');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-// Partie admin
-Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/admin/products', [ProductController::class, 'store'])->name('products.store');
-Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('products.update');
-Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
-// 🔒 Liste des produits pour l'administrateur uniquement
+    // Détails d’un produit admin
+    Route::get('/products/{id}', [ProductController::class, 'adminshow'])->name('products.show');
 
-    Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('admin.products.index');
+    // CRUD
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
+
 
 
 
@@ -113,29 +115,24 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
+    Route::get('/commander', [OrderController::class, 'checkoutindex'])->name('checkout.index');
 
 
-    Route::prefix('admin')->middleware(['auth','role:admin'])->name('admin.')->group(function() {
-        Route::get('orders', [\App\Http\Controllers\AdminOrderController::class, 'index'])->name('orders.index');
-        Route::get('orders/{id}', [\App\Http\Controllers\AdminOrderController::class, 'show'])->name('orders.show');
-        Route::patch('orders/{id}/status', [\App\Http\Controllers\AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
-        Route::delete('orders/{id}', [\App\Http\Controllers\AdminOrderController::class, 'destroy'])->name('orders.destroy');
-    });
+// ================= CLIENT =================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mes-commandes', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/mes-commandes/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/commande', [OrderController::class, 'store'])->name('orders.store');
+    Route::post('/commande/{id}/annuler', [OrderController::class, 'cancel'])->name('orders.cancel');
+});
 
+// ================= ADMIN =================
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
+    Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+    Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
+});
 
-
-
-// Liste des commandes du client
-Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-
-// Détail d’une commande
-Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
-
-// Créer une commande depuis le panier
-Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-
-// Annuler une commande
-Route::post('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
 
 
