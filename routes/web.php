@@ -60,15 +60,18 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 // --- ROUTES ADMIN ---
+// --- ROUTES ADMIN ---
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
-    // Liste des produits admin
+
+    // CRUD — l'ordre est important !
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // ⚠️ doit être avant /products/{id}
+
+    // Liste
     Route::get('/products', [ProductController::class, 'adminIndex'])->name('products.index');
 
-    // Détails d’un produit admin
+    // Détails d’un produit
     Route::get('/products/{id}', [ProductController::class, 'adminshow'])->name('products.show');
 
-    // CRUD
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
     Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
@@ -129,7 +132,7 @@ Route::middleware(['auth'])->group(function () {
 // ================= ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
-    Route::get('/orders/{id}', [OrderController::class, 'adminShow'])->name('admin.orders.show'); // 
+    Route::get('/orders/{id}', [OrderController::class, 'adminShow'])->name('admin.orders.show'); //
     Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
 });
