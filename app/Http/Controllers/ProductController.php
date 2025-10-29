@@ -70,7 +70,7 @@ public function store(Request $request)
 
     Product::create($validated);
 
-    return redirect()->route('products.index')->with('success', 'Produit ajouté avec succès.');
+    return redirect()->route('admin.products.index')->with('success', 'Produit ajouté avec succès.');
 }
 
 
@@ -108,7 +108,7 @@ public function update(Request $request, $id)
 
     $product->update($validated);
 
-    return redirect()->route('products.index')->with('success', 'Produit mis à jour avec succès.');
+    return redirect()->route('admin.products.index')->with('success', 'Produit mis à jour avec succès.');
 }
 
     // Supprime un produit
@@ -117,6 +117,6 @@ public function update(Request $request, $id)
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Produit supprimé avec succès.');
+        return redirect()->route('admin.products.index')->with('success', 'Produit supprimé avec succès.');
     }
 }

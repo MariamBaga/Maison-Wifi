@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('products.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Retour
                     </a>
                     @role('admin')
