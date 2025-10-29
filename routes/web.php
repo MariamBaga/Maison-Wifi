@@ -129,6 +129,7 @@ Route::middleware(['auth'])->group(function () {
 // ================= ADMIN =================
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
+    Route::get('/orders/{id}', [OrderController::class, 'adminShow'])->name('admin.orders.show'); // 
     Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
     Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
 });

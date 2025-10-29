@@ -148,6 +148,12 @@ class OrderController extends Controller
 
         return back()->with('success', 'Statut mis à jour avec succès.');
     }
+// Afficher le détail d'une commande pour l'admin
+public function adminShow($id)
+{
+    $order = Order::with('products', 'user')->findOrFail($id);
+    return view('admin.orders.show', compact('order'));
+}
 
     // 🗑️ Supprimer une commande
     public function destroy($id)
