@@ -50,7 +50,8 @@
                                         <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
                                     </h4>
                                     <div class="product__item__price">
-                                        ${{ number_format($product->price, 2) }}
+                                    {{ number_format($product->price, 0, ',', ' ') }} FCFA
+
                                     </div>
                                     <form action="{{ route('cart.add') }}" method="POST">
                                         @csrf

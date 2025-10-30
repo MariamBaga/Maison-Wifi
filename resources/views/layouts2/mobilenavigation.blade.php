@@ -27,6 +27,21 @@ MOBILE NAVIGATION
                 <i class="fa fa-phone-alt"></i>
                 <a href="tel:+22390909090">+223 90 90 90 90</a>
             </li>
+
+            @guest
+<li><a href="{{ route('login') }}">Se connecter</a></li>
+@endguest
+
+@auth
+<li>Bonjour, <strong>{{ Auth::user()->name }}</strong></li>
+<li>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-link text-danger p-0 m-0">Déconnexion</button>
+    </form>
+</li>
+@endauth
+
         </ul><!-- /.mobile-nav__contact -->
 
         <div class="mobile-nav__social">

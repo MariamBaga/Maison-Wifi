@@ -4,7 +4,7 @@ $headerClass = 'main-header sticky-header sticky-header--normal';
 
 
 // Définir les routes qui auront le style "inner"
-$innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index'];
+$innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index', 'login', 'register'];
 
 // Vérifier si la route actuelle est dans les routes inner
 if (request()->routeIs($innerRoutes)) {
@@ -76,6 +76,24 @@ $logo = request()->routeIs($innerRoutes)
                     <div class="main-header__call__title">Assistance</div>
                     <a class="main-header__call__text" href="tel:+223XXXXXXXX">+229 01 92 84 00 00</a>
                 </div>
+
+                {{-- Auth Buttons --}}
+@guest
+    <a href="{{ route('login') }}" class="ienet-btn" style="margin-left: 10px;">
+        <span>Se connecter</span>
+    </a>
+@endguest
+
+@auth
+    <form method="POST" action="{{ route('logout') }}" style="margin-left: 10px;">
+        @csrf
+        <button type="submit" class="ienet-btn" style="background:#dc3545;border:none;">
+            <span>Déconnexion</span>
+        </button>
+    </form>
+@endauth
+{{-- End Auth Buttons --}}
+
             </div>
         </div>
     </div>

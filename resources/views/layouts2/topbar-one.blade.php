@@ -3,7 +3,7 @@
     $topbarClass = 'topbar-one';
 
     // Ajouter --inner sur certaines pages
-    $innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index'];
+    $innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index', 'login', 'register'];
 
 if (request()->routeIs($innerRoutes)) {
     $topbarClass .= ' topbar-one--inner';
