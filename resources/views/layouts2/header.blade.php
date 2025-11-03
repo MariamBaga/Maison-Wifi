@@ -4,7 +4,7 @@ $headerClass = 'main-header sticky-header sticky-header--normal';
 
 
 // Définir les routes qui auront le style "inner"
-$innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index', 'login', 'register'];
+$innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index', 'login', 'register', 'services'];
 
 // Vérifier si la route actuelle est dans les routes inner
 if (request()->routeIs($innerRoutes)) {
@@ -48,6 +48,9 @@ $logo = request()->routeIs($innerRoutes)
                     </li>
                     <li class="{{ request()->routeIs('aboutus') ? 'current' : '' }}">
                         <a href="{{ route('aboutus') }}">À propos</a>
+                    </li>
+                    <li class="{{ request()->routeIs('services') ? 'current' : '' }}">
+                        <a href="{{ route('services') }}">Services</a>
                     </li>
                     <li class="{{ request()->routeIs('contact.form') ? 'current' : '' }}">
                         <a href="{{ route('contact.form') }}">Contact</a>

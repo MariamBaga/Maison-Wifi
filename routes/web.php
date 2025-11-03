@@ -46,6 +46,11 @@ Route::get('/aboutus', function () {
 })->name('aboutus');
 
 
+Route::get('/services', function () {
+    return view('services');
+})->name('services');
+
+
 
 Route::get('/contactus', function () {
     return view('contactus');
