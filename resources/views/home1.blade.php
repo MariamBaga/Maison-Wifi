@@ -131,33 +131,18 @@
 
             {{-- Onglets forfaits --}}
             <ul class="packages-one__list tab-buttons list-unstyled">
-                <li data-tab="#10mbps" class="tab-btn">10 MBPS</li>
-                <li data-tab="#20mbps" class="tab-btn active-btn">20 MBPS</li>
-                <li data-tab="#30mbps" class="tab-btn">30 MBPS</li>
-                <li data-tab="#50mbps" class="tab-btn">50 MBPS</li>
-            </ul>
+    <li data-tab="#residence" class="tab-btn active-btn">Résidentiel</li>
+    <li data-tab="#entreprise" class="tab-btn">Entreprise</li>
+    <li data-tab="#data" class="tab-btn">Data Center</li>
+    <li data-tab="#hotspot" class="tab-btn">Hotspot</li>
+</ul>
+
 
             {{-- Contenu d’un onglet exemple --}}
             <div class="tabs-content">
                 <div class="tab active-tab fadeInUp animated" id="20mbps">
                     <div class="row gutter-y-30">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="packages-one__card">
-                                <div class="packages-one__card__price">10 000 FCFA/ <span>mois</span></div>
-                                <h3 class="packages-one__card__title">Abonnement mensuel</h3>
-                                <ul class="packages-one__card__list">
-                                    <li><span class="fas fa-check"></span>Illimité 24h/24</li>
-                                    <li><span class="fas fa-check"></span>WiFi inclus</li>
-                                    <li><span class="fas fa-check"></span>Installation gratuite</li>
-                                    <li><span class="fas fa-check"></span>Fibre optique</li>
-                                </ul>
-                                <a class="packages-one__card__rm" href="{{ route('contact.form') }}"><i
-                                        class="icon-right-chevron"></i></a>
-                                <div class="packages-one__card__image">
-                                    <img src="{{ asset('assets/images/resources/package-1-1.jpg') }}" alt="Maison Wifi">
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div class="col-lg-4 col-md-6">
                             <div class="packages-one__card">
@@ -223,6 +208,29 @@
                             </div>
                         </div>
 
+
+                        <div class="col-lg-4 col-md-6">
+    <div class="packages-one__card">
+        <div class="packages-one__card__price">199 900 FCFA / <span>mois</span></div>
+        <h3 class="packages-one__card__title">Offre Premium </h3>
+        <ul class="packages-one__card__list">
+            <li><span class="fas fa-check"></span>Câblage réseau</li>
+            <li><span class="fas fa-check"></span>Configuration des répéteurs</li>
+            <li><span class="fas fa-check"></span>Configuration caméra</li>
+            <li><span class="fas fa-check"></span>1 firewall offert</li>
+            <li><span class="fas fa-check"></span>1 répéteur offert</li>
+            <li><span class="fas fa-check"></span>1 formation sur les bases de la cybersécurité</li>
+            <li><span class="fas fa-check"></span>1 Office 365 offert (valable pour 05 postes)</li>
+            <li><span class="fas fa-check"></span>SAV 06 mois offert</li>
+        </ul>
+        <a class="packages-one__card__rm" href="{{ route('contact.form') }}">
+            <i class="icon-right-chevron"></i>
+        </a>
+        <div class="packages-one__card__image">
+            <img src="{{ asset('assets/images/resources/package-1-2.jpg') }}" alt="Offre Premium">
+        </div>
+    </div>
+</div>
 
 
 
