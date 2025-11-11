@@ -10,11 +10,11 @@
                 <ul class="list-unstyled main-footer__top__info">
                     <li class="main-footer__top__info__item">
                         <span class="main-footer__top__info__icon"><i class="icon-mail"></i></span>
-                        <a href="mailto:contact@connectiix.com">contact@connectiix.com</a>
+                        <a href="mailto:info@maisonduwifi.com">info@maisonduwifi.com</a>
                     </li>
                     <li class="main-footer__top__info__item">
                         <span class="main-footer__top__info__icon"><i class="icon-maps-and-flags"></i></span>
-                        Abatta, Abidjan, Côte d’Ivoire
+                        Lot 1234, Rue des Entrepreneurs Godomey, Cotonou, Bénin
                     </li>
                 </ul>
                 <div class="main-footer__top__right">

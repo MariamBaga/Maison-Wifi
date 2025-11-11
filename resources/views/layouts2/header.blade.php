@@ -77,7 +77,7 @@ $logo = request()->routeIs($innerRoutes)
                 <div class="main-header__call">
                     <div class="main-header__call__icon"><span class="icon-telephone"></span></div>
                     <div class="main-header__call__title">Assistance</div>
-                    <a class="main-header__call__text" href="tel:+223XXXXXXXX">+229 01 92 84 00 00</a>
+                    <a class="main-header__call__text" href="tel:+2290192840000">+229 01 92 84 00 00</a>
                 </div>
 
                 {{-- Auth Buttons --}}

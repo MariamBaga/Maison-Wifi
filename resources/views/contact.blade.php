@@ -18,8 +18,8 @@
                         <div class="contact-one__info__content">
                             <h4 class="contact-one__info__title">Adresse</h4>
                             <p class="contact-one__info__text">
-                                ConnectiiX, Bamako, Mali<br>
-                                Hamdallaye ACI 2000
+                            Lot 1234, Rue des Entrepreneurs Godomey,<br>
+                            Cotonou, Bénin
                             </p>
                         </div>
                     </li>
@@ -38,8 +38,8 @@
                         <div class="contact-one__info__content">
                             <h4 class="contact-one__info__title">Email</h4>
                             <p class="contact-one__info__text">
-                                <a href="mailto:contact@connectiix.com">contact@connectiix.com</a><br>
-                                <a href="mailto:info@connectiix.com">info@connectiix.com</a>
+                                <a href="mailto:info@maisonduwifi.com">info@maisonduwifi.com</a><br>
+                                <a href="mailto:info@maisonduwifi.com">info@maisonduwifi.com</a>
                             </p>
                         </div>
                     </li>

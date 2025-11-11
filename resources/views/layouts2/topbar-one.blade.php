@@ -17,11 +17,11 @@ if (request()->routeIs($innerRoutes)) {
             <ul class="list-unstyled topbar-one__info">
                 <li class="topbar-one__info__item">
                     <span class="topbar-one__info__icon"><i class="icon-mail"></i></span>
-                    <a href="mailto:info@ienetmail.com">info@connectiixmail.com</a>
+                    <a href="mailto:info@maisonduwifi.com">info@maisonduwifi.com</a>
                 </li>
                 <li class="topbar-one__info__item">
                     <span class="topbar-one__info__icon"><i class="icon-maps-and-flags"></i></span>
-                    Côte d’Ivoire, Abidjan, Abatta
+                    Lot 1234, Rue des Entrepreneurs Godomey, Cotonou, Bénin
                 </li>
             </ul>
             <div class="topbar-one__right">

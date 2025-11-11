@@ -107,7 +107,7 @@ SIDEBAR
         <ul class="sidebar-one__info">
             <li>
                 <span class="fas fa-map-marker-alt"></span>
-                ACI 2000, Bamako – Mali
+                Lot 1234, Rue des Entrepreneurs Godomey, Cotonou, Bénin
             </li>
             <li>
                 <span class="fas fa-clock"></span>
@@ -115,11 +115,11 @@ SIDEBAR
             </li>
             <li>
                 <span class="fas fa-phone"></span>
-                <a href="tel:+22390909090">+223 90 90 90 90</a>
+                <a href="tel:+2290192840000">+229 01 92 84 00 00</a>
             </li>
             <li>
                 <span class="fas fa-envelope"></span>
-                <a href="mailto:info@ienetmail.com">info@ienetmail.com</a>
+                <a href="mailto:info@maisonduwifi.com">info@maisonduwifi.com</a>
             </li>
         </ul>
 
