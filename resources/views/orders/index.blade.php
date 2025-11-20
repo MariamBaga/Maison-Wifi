@@ -2,6 +2,9 @@
 @section('title', 'Mes commandes')
 
 @section('content')
+
+@include('layouts2.alerts')
+
 @include('layouts2.breadcrumb', ['title' => 'Historique de mes commandes'])
 
 <section class="checkout-page">

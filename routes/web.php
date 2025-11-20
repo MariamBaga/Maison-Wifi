@@ -124,13 +124,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
     Route::get('/commander', [OrderController::class, 'checkoutindex'])->name('checkout.index');
-
-
+  Route::post('/commande', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/mes-commandes', [OrderController::class, 'index'])->name('orders.index');
 // ================= CLIENT =================
 Route::middleware(['auth'])->group(function () {
-    Route::get('/mes-commandes', [OrderController::class, 'index'])->name('orders.index');
+
     Route::get('/mes-commandes/{id}', [OrderController::class, 'show'])->name('orders.show');
-    Route::post('/commande', [OrderController::class, 'store'])->name('orders.store');
+
     Route::post('/commande/{id}/annuler', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 

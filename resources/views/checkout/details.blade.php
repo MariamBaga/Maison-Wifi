@@ -1,7 +1,7 @@
 @extends('layouts2.master')
 @section('title', 'Détails de la commande')
 @section('content')
-
+@include('layouts2.alerts')
 <!-- Page Header -->
 @include('layouts2.breadcrumb', ['title' => 'Détails de la commande'])
 

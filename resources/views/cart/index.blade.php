@@ -7,7 +7,7 @@
 @extends('layouts2.master')
 @section('title', 'Mon Panier')
 @section('content')
-
+@include('layouts2.alerts')
 @include('layouts2.breadcrumb', ['title' => 'Mon Panier'])
 <!-- Cart Start -->
 <section class="cart-page section-padding">

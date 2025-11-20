@@ -29,3 +29,6 @@
 
 <!-- Template JS -->
 <script src="{{ asset('assets/js/ienet.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@include('layouts2.alerts')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use App\Notifications\OrderStatusNotification;
 
 class OrderController extends Controller
 {
@@ -20,20 +21,21 @@ class OrderController extends Controller
             return redirect()->route('login')->with('error', 'Veuillez vous connecter pour voir vos commandes.');
         }
 
-        $orders = Order::where('user_id', $user->id)
-            ->with('products')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $orders = Order::where('user_id', $user->id)->with('products')->orderBy('created_at', 'desc')->get();
 
         return view('orders.index', compact('orders'));
     }
 
     public function checkoutindex(Request $request)
     {
-     // Récupérer le panier pour finalisation de commande
+        // Récupérer le panier pour finalisation de commande
         $cart = $request->user()
-            ? Cart::where('user_id', $request->user()->id)->with('products')->first()
-            : Cart::where('session_id', $request->session()->getId())->with('products')->first();
+            ? Cart::where('user_id', $request->user()->id)
+                ->with('products')
+                ->first()
+            : Cart::where('session_id', $request->session()->getId())
+                ->with('products')
+                ->first();
 
         if (!$cart || $cart->products->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Votre panier est vide.');
@@ -43,14 +45,12 @@ class OrderController extends Controller
         $orders = [];
         if ($request->user()) {
             $orders = Order::where('user_id', $request->user()->id)
-                            ->with('products')
-                            ->get();
+                ->with('products')
+                ->get();
         }
 
         return view('checkout.details', compact('cart', 'orders'));
     }
-
-
 
     // 🔍 Voir les détails d’une commande
     public function show($id, Request $request)
@@ -70,10 +70,16 @@ class OrderController extends Controller
     {
         $user = $request->user();
 
+        if (!$request->user()) {
+            return redirect()->route('login')->with('error', 'Vous devez vous connecter pour passer une commande.');
+        }
+
         // Récupère le panier actif
         $cart = $user
             ? Cart::where('user_id', $user->id)->with('products')->first()
-            : Cart::where('session_id', $request->session()->getId())->with('products')->first();
+            : Cart::where('session_id', $request->session()->getId())
+                ->with('products')
+                ->first();
 
         if (!$cart || $cart->products->isEmpty()) {
             return redirect()->route('cart.index')->with('error', 'Votre panier est vide.');
@@ -83,13 +89,13 @@ class OrderController extends Controller
 
         // Crée la commande
         $order = Order::create([
-            'user_id'        => $user->id ?? null,
-            'guest_name'     => $request->guest_name,
-            'guest_email'    => $request->guest_email,
-            'guest_phone'    => $request->guest_phone,
-            'guest_address'  => $request->guest_address,
-            'total'          => $total,
-            'status'         => 'pending',
+            'user_id' => $user->id ?? null,
+            'guest_name' => $request->guest_name,
+            'guest_email' => $request->guest_email,
+            'guest_phone' => $request->guest_phone,
+            'guest_address' => $request->guest_address,
+            'total' => $total,
+            'status' => 'pending',
             'payment_method' => $request->payment_method ?? 'cash_on_delivery',
         ]);
 
@@ -104,7 +110,58 @@ class OrderController extends Controller
         // Vide le panier
         $cart->products()->detach();
 
-        return redirect()->route('orders.index')->with('success', 'Votre commande a été enregistrée avec succès !');
+        // Après avoir créé la commande
+\Log::info("🔵 Tentative d'envoi de notification à l'utilisateur", [
+    'user_id' => $user->id,
+    'email' => $user->email,
+    'order_id' => $order->id,
+]);
+
+try {
+    $user->notify(new OrderStatusNotification($order, 'created'));
+    \Log::info("🟢 Notification envoyée à l'utilisateur avec succès", [
+        'user_id' => $user->id,
+    ]);
+} catch (\Exception $e) {
+    \Log::error("🔴 Erreur lors de la notification de l'utilisateur", [
+        'message' => $e->getMessage(),
+        'trace' => $e->getTraceAsString(),
+    ]);
+}
+
+
+// ===============================
+// 📩 Notification aux admins
+// ===============================
+$admins = \App\Models\User::role('admin')->get();
+
+\Log::info("🟡 Nombre d'admins trouvés : " . $admins->count());
+
+foreach ($admins as $admin) {
+
+    \Log::info("🔵 Tentative d'envoi de notification admin", [
+        'admin_id' => $admin->id,
+        'email' => $admin->email,
+        'order_id' => $order->id,
+    ]);
+
+    try {
+        $admin->notify(new OrderStatusNotification($order, 'created'));
+        \Log::info("🟢 Notification envoyée à l'admin", [
+            'admin_id' => $admin->id
+        ]);
+    } catch (\Exception $e) {
+        \Log::error("🔴 Erreur lors de la notification admin", [
+            'admin_id' => $admin->id,
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString(),
+        ]);
+    }
+}
+
+
+        // 🔥 Redirige vers la page de détails de la commande avec succès
+        return redirect()->route('orders.show', $order->id)->with('success', 'Votre commande a été enregistrée avec succès !');
     }
 
     // ❌ Annuler une commande
@@ -121,6 +178,14 @@ class OrderController extends Controller
         }
 
         $order->update(['status' => 'cancelled']);
+
+        $user = $request->user();
+        $user->notify(new OrderStatusNotification($order, 'cancelled'));
+
+        $admins = \App\Models\User::role('admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new OrderStatusNotification($order, 'cancelled'));
+        }
         return back()->with('success', 'Commande annulée avec succès.');
     }
 
@@ -144,16 +209,28 @@ class OrderController extends Controller
             'status' => 'required|in:pending,confirmed,delivered,cancelled',
         ]);
 
+        $oldStatus = $order->status;
         $order->update(['status' => $request->status]);
+
+        // Notification
+        $user = $order->user;
+        $user->notify(new OrderStatusNotification($order, 'status_updated', $oldStatus, $order->status));
+
+        $admins = \App\Models\User::role('admin')->get();
+        foreach ($admins as $admin) {
+            $admin->notify(new OrderStatusNotification($order, 'status_updated', $oldStatus, $order->status));
+        }
+
+        // Notifier l'utilisateur du changement de statut
 
         return back()->with('success', 'Statut mis à jour avec succès.');
     }
-// Afficher le détail d'une commande pour l'admin
-public function adminShow($id)
-{
-    $order = Order::with('products', 'user')->findOrFail($id);
-    return view('admin.orders.show', compact('order'));
-}
+    // Afficher le détail d'une commande pour l'admin
+    public function adminShow($id)
+    {
+        $order = Order::with('products', 'user')->findOrFail($id);
+        return view('admin.orders.show', compact('order'));
+    }
 
     // 🗑️ Supprimer une commande
     public function destroy($id)
@@ -164,6 +241,3 @@ public function adminShow($id)
         return back()->with('success', 'Commande supprimée.');
     }
 }
-
-
-

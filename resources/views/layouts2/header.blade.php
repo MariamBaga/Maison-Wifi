@@ -4,7 +4,7 @@ $headerClass = 'main-header sticky-header sticky-header--normal';
 
 
 // Définir les routes qui auront le style "inner"
-$innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index', 'login', 'register', 'services'];
+$innerRoutes = ['contact.form', 'aboutus', 'cart.index', 'products.index', 'orders.index', 'products.show', 'checkout.index', 'login', 'register', 'services','orders.show'];
 
 // Vérifier si la route actuelle est dans les routes inner
 if (request()->routeIs($innerRoutes)) {
